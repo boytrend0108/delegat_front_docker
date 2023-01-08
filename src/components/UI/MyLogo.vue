@@ -1,10 +1,10 @@
 <template>
-
+  <img src="@/assets/images/logo.svg" class="logo-img" alt="logo">
 </template>
 
 <script>
 export default {
-   name:'main'
+   name:'my-logo'
 }
 </script>
 
