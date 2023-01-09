@@ -35,6 +35,8 @@
 import FormOffer from '@/components/form/FormOffer.vue';
 import McvValidationErrors from '@/components/ValidationErrors'
 import { IMaskDirective } from 'vue-imask';
+import {mapGetters, mapActions} from 'vuex'
+
 export default {
   name: 'form-reg',
   data() {
@@ -54,6 +56,11 @@ export default {
   directives: {
     imask: IMaskDirective
   },
+
+  computed:{
+   ...mapGetters(['isSubmitting',"validationErrors" ])
+  },
+
   methods: {
   //---------------------------PhoneMask----------------------------------------
     onAccept(e) {
@@ -68,8 +75,22 @@ export default {
       console.log('complete', maskRef.unmaskedValue);
     },
 //------------------------------------------------------------------------------
+    ...mapActions([
+     'register', 'login'
+    ]),
+
     onSubmit() {
+      let data = {
+        email: this.email,
+        username: this.username,
+        phone: this.phone
+      }
       console.log('submit')
+      this.register(data)
+        .then(user => {
+        console.log('successfully register user', user)
+        this.$router.push({name: 'home'})
+      })
     }
   },
 
