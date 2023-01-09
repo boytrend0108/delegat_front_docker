@@ -1,12 +1,17 @@
 <template>
 
-    <input class="input">
+    <input class="input" v-model="value">
   
 </template>
 
 <script>
   export default {
-    name:'my-input'
+    name:'my-input',
+    data(){
+      return{
+        value:''
+      }
+    }
   }
 </script>
 

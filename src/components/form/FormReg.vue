@@ -1,25 +1,31 @@
 <template>
-  <form class="form" id="reg-form">
+  <mcv-validation-errors
+            v-if='validationErrors'
+            :validation-errors='validationErrors'
+          />
+  <form 
+    class="form" 
+    id="reg-form" 
+    @submit.prevent='onSubmit'>
     <h2 class="form-title">Регистрация</h2>
     <div class="input-box">
       <label for="name" class="form-label">ФИО</label>
-      <my-input type="text" id="name" />
+      <my-input type="text" id="name" v-model='username'/>
     </div>
     <div class="input-box">
       <label for="email" class="form-label">E-mail</label>
-      <my-input type="email" id="email" />
+      <my-input type="email" id="email"  v-model='email' />
     </div>
     <div class="input-box">
       <label for="phone" class="form-label">Телефон</label>
     </div>
     <input
-      :value="value"
+      v-model="value"
       v-imask="mask"
       @accept="onAccept"
       @complete="onComplete"
       class="input"
       >
-      
     <my-button type="submit" class="btn">Зарегистрироваться</my-button>
   </form>
   <router-link to="/login" class="form__question"> Уже есть аккaунт?</router-link>
@@ -28,37 +34,46 @@
 
 <script>
 import FormOffer from '@/components/form/FormOffer.vue';
+import McvValidationErrors from '@/components/ValidationErrors'
 import { IMaskDirective } from 'vue-imask';
-  export default {
-    name: 'form-reg',
-    data () {
-      return {
-        value: '',
-        mask: {
-          mask: '{+7} (000) 000 00 00',
-          lazy: false
-        },
+export default {
+  name: 'form-reg',
+  data() {
+    return {
+      username:'',
+      email:'',
+      value: '',
+      mask: {
+        mask: '{+7} (000) 000 00 00',
+        lazy: false
+      },
     }
   },
-    components:{
-      FormOffer,
+  components: {
+    FormOffer,McvValidationErrors
+  },
+  directives: {
+    imask: IMaskDirective
+  },
+  methods: {
+  //---------------------------PhoneMask----------------------------------------
+    onAccept(e) {
+      const maskRef = e.detail;
+      this.value = maskRef.value;
+      console.log('accept', maskRef.value);
     },
-    directives: {
-      imask: IMaskDirective
+
+    onComplete(e) {
+      const maskRef = e.detail;
+      console.log('complete', maskRef.unmaskedValue);
     },
-       methods: {
-      onAccept (e) {
-        const maskRef = e.detail;
-        this.value = maskRef.value;
-        console.log('accept', maskRef.value);
-      },
-      onComplete (e) {
-        const maskRef = e.detail;
-        console.log('complete', maskRef.unmaskedValue);
-      },
-    },
-    
-  }
+//------------------------------------------------------------------------------
+    onSubmit() {
+      console.log('submit')
+    }
+  },
+
+}
 </script>
 
 <style lang="scss" scoped>
