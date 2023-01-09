@@ -1,4 +1,5 @@
 <template>
+    <my-dialog></my-dialog>
   <component :is="layout">
     <router-view />
   </component>
@@ -6,9 +7,10 @@
 
 <script>
 import MainLayout from '@/layouts/MainLayout.vue'
+import MyDialog from './components/UI/MyDialog.vue'
    export default {
     components: {
-    MainLayout
+    MainLayout, MyDialog
   },
 
     computed:{
