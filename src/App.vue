@@ -1,12 +1,25 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>|
-    <router-link to="/login">Login</router-link>|
-    <router-link to="/test">Test</router-link>
-  </nav>
-  <router-view/>
+  <component :is="layout">
+    <router-view />
+  </component>
 </template>
+
+<script>
+import MainLayout from '@/layouts/MainLayout.vue'
+   export default {
+    components: {
+    MainLayout
+  },
+
+    computed:{
+      layout(){
+        return(this.$route.meta.layout || 'main-layout')
+      }
+    }
+}
+
+</script>
+
 
 <style>
 #app {

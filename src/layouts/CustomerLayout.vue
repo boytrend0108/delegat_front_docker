@@ -4,7 +4,10 @@
          <my-logo></my-logo>
       </aside>
       <main class="main-box">
+         <header class="main-box__header"></header>
+         <section class="main">
             <router-view />
+         </section>
       </main>
    </div>
 </template>
@@ -26,12 +29,20 @@ export default {
 }
 .side-bar{
    height: 100vh;
-   border-right: 1px solid #D9E1E7;
-   padding: 2rem;
 }
 .main-box{
    width: 100%;
    display: flex;
    flex-direction: column;
+   border: 1px solid red;
 }
+
+.main-box__header{
+   border: 1px solid blue;
+}
+
+.main{
+   border: 1px solid rgb(26, 192, 11);
+}
+
 </style>
