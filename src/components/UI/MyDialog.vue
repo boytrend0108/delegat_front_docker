@@ -1,7 +1,9 @@
 <template>
   <div class="dialog" v-if="showDialog">
     <section class="dialog__content">
-      <slot></slot>
+      <slot>
+       
+      </slot>
     </section>
   </div>
 </template>
@@ -26,8 +28,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: black;
-  opacity: 0.5;
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
 }
 
@@ -35,8 +36,8 @@ export default {
   margin: auto;
   background-color: #fff;
   border-radius: 1.2rem;
-  min-height: 5rem;
-  min-width: 10rem;
+  min-height: 10rem;
+  min-width: 30rem;
 }
 
 </style>

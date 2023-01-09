@@ -1,5 +1,7 @@
 <template>
-    <my-dialog></my-dialog>
+    <my-dialog>
+      <my-button>Войти</my-button>
+    </my-dialog>
   <component :is="layout">
     <router-view />
   </component>
