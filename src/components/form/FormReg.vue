@@ -20,7 +20,6 @@
       <label for="phone" class="form-label">Телефон</label>
     </div>
     <input
-      v-model="value"
       v-imask="mask"
       @accept="onAccept"
       @complete="onComplete"
@@ -42,15 +41,15 @@ export default {
     return {
       username:'',
       email:'',
-      value: '',
+      phone: '',
       mask: {
-        mask: '{+7} (000) 000 00 00',
+        mask: '{+7}(000)0000000',
         lazy: false
       },
     }
   },
   components: {
-    FormOffer,McvValidationErrors
+    FormOffer, McvValidationErrors
   },
   directives: {
     imask: IMaskDirective
@@ -59,8 +58,9 @@ export default {
   //---------------------------PhoneMask----------------------------------------
     onAccept(e) {
       const maskRef = e.detail;
-      this.value = maskRef.value;
+      this.phone = maskRef.value;
       console.log('accept', maskRef.value);
+      console.log(this.phone)
     },
 
     onComplete(e) {
