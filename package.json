@@ -9,10 +9,12 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "imask": "^6.4.3",
     "normalize-scss": "^7.0.1",
     "sass": "^1.57.1",
     "sass-loader": "^13.2.0",
     "vue": "^3.2.13",
+    "vue-imask": "^6.4.3",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
   },

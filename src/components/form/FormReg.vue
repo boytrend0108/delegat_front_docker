@@ -1,0 +1,94 @@
+<template>
+  <form class="form" id="reg-form">
+    <h2 class="form-title">Регистрация</h2>
+    <div class="input-box">
+      <label for="name" class="form-label">ФИО</label>
+      <my-input type="text" id="name" />
+    </div>
+    <div class="input-box">
+      <label for="email" class="form-label">E-mail</label>
+      <my-input type="email" id="email" />
+    </div>
+    <div class="input-box">
+      <label for="phone" class="form-label">Телефон</label>
+      <my-input type="text" id="phone" />
+    </div>
+    <input
+      :value="value"
+      v-imask="mask"
+      @accept="onAccept"
+      @complete="onComplete">
+    <my-button type="submit" class="btn">Зарегистрироваться</my-button>
+  </form>
+  <router-link to="/login" class="form__question"> Уже есть аккaунт?</router-link>
+  <form-offer></form-offer>
+</template>
+
+<script>
+import FormOffer from '@/components/form/FormOffer.vue';
+import { IMaskDirective } from 'vue-imask';
+  export default {
+    name: 'form-reg',
+    data () {
+      return {
+        value: '',
+        mask: {
+          mask: '{+7}(000)-000-00-00',
+          lazy: false
+        },
+    }
+  },
+    components:{
+      FormOffer,
+    },
+    directives: {
+      imask: IMaskDirective
+    },
+       methods: {
+      onAccept (e) {
+        const maskRef = e.detail;
+        this.value = maskRef.value;
+        console.log('accept', maskRef.value);
+      },
+      onComplete (e) {
+        const maskRef = e.detail;
+        console.log('complete', maskRef.unmaskedValue);
+      },
+    },
+    
+  }
+</script>
+
+<style lang="scss" scoped>
+form{
+  @include form;
+}
+
+.form-title{
+  @include form-title;
+}
+.form-label {
+  margin: 1rem 0;
+  color: #809fb8;
+  display: inline;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.input-box{
+  @include input-box;
+}
+
+.btn{
+ @include btn;
+}
+
+.form__question{
+ @include form__question;
+}
+
+.form__question:hover{
+    text-decoration: underline;
+  }
+</style>

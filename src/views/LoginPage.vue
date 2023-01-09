@@ -1,10 +1,17 @@
 <template>
-  <h1></h1>
+    <my-dialog>
+      <form-login></form-login>
+    </my-dialog>
 </template>
 
 <script>
+import FormLogin from '@/components/form/FormLogin.vue';
+
 export default {
-  name: 'login-page'
+  name: 'login-page',
+  components:{
+    FormLogin, 
+  }
 }
 </script>
 

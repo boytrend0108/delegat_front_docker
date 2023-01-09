@@ -37,7 +37,7 @@ export default {
   background-color: #fff;
   border-radius: 1.2rem;
   min-height: 10rem;
-  min-width: 30rem;
+  min-width: 35rem;
 }
 
 </style>
