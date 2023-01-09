@@ -11,13 +11,15 @@
     </div>
     <div class="input-box">
       <label for="phone" class="form-label">Телефон</label>
-      <my-input type="text" id="phone" />
     </div>
     <input
       :value="value"
       v-imask="mask"
       @accept="onAccept"
-      @complete="onComplete">
+      @complete="onComplete"
+      class="input"
+      >
+      
     <my-button type="submit" class="btn">Зарегистрироваться</my-button>
   </form>
   <router-link to="/login" class="form__question"> Уже есть аккaунт?</router-link>
@@ -33,7 +35,7 @@ import { IMaskDirective } from 'vue-imask';
       return {
         value: '',
         mask: {
-          mask: '{+7}(000)-000-00-00',
+          mask: '{+7} (000) 000 00 00',
           lazy: false
         },
     }
@@ -91,4 +93,17 @@ form{
 .form__question:hover{
     text-decoration: underline;
   }
+  .input{
+  width: 100%;
+  border: 2px solid #D9E1E7;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #06152b;
+  display: block;
+  font-family: Raleway,system-ui,-apple-system,sans-serif;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  padding: 0.7rem 1.25rem;
+  outline: none;
+}
 </style>

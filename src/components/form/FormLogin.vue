@@ -60,11 +60,12 @@ import FormOffer from '@/components/form/FormOffer.vue';
 .form__question:hover{
     text-decoration: underline;
   }
-
   .question-box{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
+
+  
 </style>
