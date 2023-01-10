@@ -47,7 +47,7 @@ export default {
             resolve(response.data.user)
           })
           .catch((result) => {
-            commit('loginFailed', result.response.data.detail[0].msg)
+            commit('loginFailed', result.response.data.detail)
           })
       })
     },

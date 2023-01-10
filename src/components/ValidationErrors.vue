@@ -19,7 +19,8 @@ export default {
 
     errorMessages() {
       console.log("проверка compunted", this.validationErrors)
-        const errorMessage = "Пароль менее 8 символов"
+        // const errorMessage = "Пароль менее 8 символов"
+        const errorMessage = this.validationErrors
         return errorMessage
     }
   }
