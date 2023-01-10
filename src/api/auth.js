@@ -1,10 +1,7 @@
 import axios from '@/api/axios'
 
 const register = (credentials) => {
-  return axios.post('/',{
-    user: credentials 
-      // "username": "TestName"
-  })
+  return axios.post('/', credentials)
 }
 
 const login = (credentials) => {
