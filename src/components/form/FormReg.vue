@@ -1,13 +1,14 @@
 <template>
-  <mcv-validation-errors
-            v-if='validationErrors'
-            :validation-errors='validationErrors'
-          />
+  
   <form 
     class="form" 
     id="reg-form" 
     @submit.prevent='onSubmit'>
     <h2 class="form-title">Регистрация</h2>
+    <mcv-validation-errors
+            v-if='validationErrors'
+            :validation-errors='validationErrors'
+          />
     <div class="input-box">
       <label for="name" class="form-label">ФИО</label>
       <my-input type="text" id="name" v-model='username'/>
@@ -57,7 +58,7 @@ export default {
 
   methods: {
     ...mapActions([
-     'register', 'login'
+     'registration', 'login'
     ]),
 
     onSubmit() {
@@ -67,12 +68,11 @@ export default {
         password: this.password,
         password_2: this.password_2,
       }
-      
-      this.register(data)
+
+      this.registration(data)
         .then(user => {
         console.log('successfully register user', user)
-        localStorage.setItem('token', "5555")
-        this.$router.push({name: 'about'})
+        this.$router.push('/login')
       })
     }
   },

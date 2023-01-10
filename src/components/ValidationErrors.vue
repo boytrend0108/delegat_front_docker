@@ -1,7 +1,7 @@
 <template>
   <ul class='error-messages'>
     <li class="li" v-if='validationErrors'>
-      {{ validationErrors }}
+      {{ errorMessages }}
     </li>
   </ul>
 </template>
@@ -18,10 +18,9 @@ export default {
     ]),
 
     errorMessages() {
-      return Object.keys(this.validationErrors).map(name => {
-        const messages = this.validationErrors[name].join(', ')
-        return `${name} ${messages}`
-      })
+      console.log("проверка compunted", this.validationErrors)
+        const errorMessage = "Пароль менее 8 символов"
+        return errorMessage
     }
   }
 }
@@ -32,5 +31,6 @@ export default {
       list-style-type: none;
       font-size: 1.5rem;
       color:red;
+      padding: 1rem;
    }
 </style>
