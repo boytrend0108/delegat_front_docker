@@ -1,28 +1,36 @@
 <template>
   <ul class='error-messages'>
-    <li v-for='errorMessage in errorMessages' :key='errorMessage'>
-      {{ errorMessage }}
+    <li class="li" v-if='validationErrors'>
+      {{ errorMessages }}
     </li>
   </ul>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'McvValidationErrors',
-  props:{
-    validationErrors: {
-      type: Object,
-      required: true
-    }
-  },
 
   computed: {
+
+    ...mapGetters([
+      'validationErrors'
+    ]),
+
     errorMessages() {
-      return Object.keys(this.validationErrors).map(name => {
-        const messages = this.validationErrors[name].join(', ')
-        return `${name} ${messages}`
-      })
+      console.log("проверка compunted", this.validationErrors)
+        const errorMessage = "Пароль менее 8 символов"
+        return errorMessage
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+   .li{
+      list-style-type: none;
+      font-size: 1.5rem;
+      color:red;
+      padding: 1rem;
+   }
+</style>

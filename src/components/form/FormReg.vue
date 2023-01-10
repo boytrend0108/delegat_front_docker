@@ -1,13 +1,14 @@
 <template>
-  <mcv-validation-errors
-            v-if='validationErrors'
-            :validation-errors='validationErrors'
-          />
+  
   <form 
     class="form" 
     id="reg-form" 
     @submit.prevent='onSubmit'>
     <h2 class="form-title">Регистрация</h2>
+    <mcv-validation-errors
+            v-if='validationErrors'
+            :validation-errors='validationErrors'
+          />
     <div class="input-box">
       <label for="name" class="form-label">ФИО</label>
       <my-input type="text" id="name" v-model='username'/>
@@ -17,14 +18,14 @@
       <my-input type="email" id="email"  v-model='email' />
     </div>
     <div class="input-box">
-      <label for="phone" class="form-label">Телефон</label>
+      <label for="phone" class="form-label">Пароль</label>
+      <my-input type="password" id="password"  v-model='password' />
+      <p>gjgj_Ujk25</p>
     </div>
-    <input
-      v-imask="mask"
-      @accept="onAccept"
-      @complete="onComplete"
-      class="input"
-      >
+    <div class="input-box">
+      <label for="phone" class="form-label">Повторите пароль</label>
+      <my-input type="password" id="password_2"  v-model='password_2' />
+    </div>
     <my-button type="submit" class="btn">Зарегистрироваться</my-button>
   </form>
   <router-link to="/login" class="form__question"> Уже есть аккaунт?</router-link>
@@ -34,7 +35,6 @@
 <script>
 import FormOffer from '@/components/form/FormOffer.vue';
 import McvValidationErrors from '@/components/ValidationErrors'
-import { IMaskDirective } from 'vue-imask';
 import {mapGetters, mapActions} from 'vuex'
 
 export default {
@@ -43,53 +43,36 @@ export default {
     return {
       username:'',
       email:'',
-      phone: '',
-      mask: {
-        mask: '{+7}(000)0000000',
-        lazy: false
-      },
+      password: '',
+      password_2: '',
     }
   },
   components: {
     FormOffer, McvValidationErrors
   },
-  directives: {
-    imask: IMaskDirective
-  },
+ 
 
   computed:{
    ...mapGetters(['isSubmitting',"validationErrors" ])
   },
 
   methods: {
-  //---------------------------PhoneMask----------------------------------------
-    onAccept(e) {
-      const maskRef = e.detail;
-      this.phone = maskRef.value;
-      console.log('accept', maskRef.value);
-      console.log(this.phone)
-    },
-
-    onComplete(e) {
-      const maskRef = e.detail;
-      console.log('complete', maskRef.unmaskedValue);
-    },
-//------------------------------------------------------------------------------
     ...mapActions([
-     'register', 'login'
+     'registration', 'login'
     ]),
 
     onSubmit() {
       let data = {
+        full_name: this.username,
         email: this.email,
-        username: this.username,
-        phone: this.phone
+        password: this.password,
+        password_2: this.password_2,
       }
-      console.log('submit')
-      this.register(data)
+
+      this.registration(data)
         .then(user => {
         console.log('successfully register user', user)
-        this.$router.push({name: 'home'})
+        this.$router.push('/login')
       })
     }
   },
