@@ -45,10 +45,16 @@
         :class="{ invalid:!isValid }"
         />
         <font-awesome-icon 
+          v-if="showPass1"
           icon="fa-solid fa-eye" 
           class="icon"
           @click="showPassword('1')"
          />
+         <font-awesome-icon 
+          icon="fa-solid fa-eye-slash" 
+          class="icon"  
+          @click="showPassword('1')"
+          v-if="!showPass1" />
       <p>abcABC123$</p>
     </div>
 
@@ -62,11 +68,17 @@
         :class="{ invalid:!isValid }"
         >
       </my-input>
-      <font-awesome-icon 
+      <font-awesome-icon
+        v-if="showPass2"
         icon="fa-solid fa-eye" 
         class="icon"
         @click="showPassword('2')"
         />
+        <font-awesome-icon 
+          icon="fa-solid fa-eye-slash" 
+          class="icon"  
+          @click="showPassword('2')"
+          v-if="!showPass2" />
     </div>
 
     <my-button 
@@ -91,6 +103,8 @@ export default {
     return {
       isValid: true,
       isBtnEnable:true,
+      showPass1: true,
+      showPass2: true,
       username:'',
       email:'',
       password: '',
@@ -133,25 +147,28 @@ export default {
             }          
     },
 
-    showPassword(id) {
- 
+  showPassword(id) {  
       const firstPassword = document.getElementById('password_1')
       const secondPassword = document.getElementById('password_2')
       if (id === "1") {
         if (firstPassword.attributes.type.textContent === 'password') {
             firstPassword.attributes.type.textContent = 'text'
+            this.showPass1 = !this.showPass1
             return
         } 
         if (firstPassword.attributes.type.textContent === "text") {
             firstPassword.attributes.type.textContent = 'password';
+            this.showPass1 = !this.showPass1
         }
       } 
       else if (id === "2") {
         if (secondPassword.attributes.type.textContent === 'password') {
             secondPassword.attributes.type.textContent = 'text';
+            this.showPass2 = !this.showPass2
             return
         } else {
           secondPassword.attributes.type.textContent = 'password';
+          this.showPass2 = !this.showPass2
         }
       }
     },
