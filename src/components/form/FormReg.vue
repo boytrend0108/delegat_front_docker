@@ -9,6 +9,7 @@
             v-if='validationErrors'
             :validation-errors='validationErrors'
           />
+
     <div class="input-box">
       <label for="name" class="form-label">ФИО</label>
       <my-input 
@@ -20,9 +21,10 @@
         />
         <p>Иванов Иван Иванович</p>
     </div>
+
     <div class="input-box">
       <label for="email" class="form-label">E-mail</label>
-      <my-input 
+      <my-input
         type="email" 
         id="email"  
         v-model.trim='email'
@@ -31,27 +33,47 @@
         />
         <p>ggg@ff.jj</p>
     </div>
+
     <div class="input-box">
       <label for="phone" class="form-label">Пароль</label>
       <my-input 
         type="password"
+        class="input"
+        id="password_1" 
         v-model.trim='password'
         @input="validations"
         :class="{ invalid:!isValid }"
         />
+        <font-awesome-icon 
+          icon="fa-solid fa-eye" 
+          class="icon"
+          @click="showPassword('1')"
+         />
       <p>abcABC123$</p>
     </div>
-    <div class="input-box">
+
+    <div  class="input-box">
       <label for="phone" class="form-label">Повторите пароль</label>
-      <my-input 
+      <my-input
         type="password" 
         id="password_2"  
         v-model.trim='password_2'
         @input="validations"
         :class="{ invalid:!isValid }"
-       />
+        >
+      </my-input>
+      <font-awesome-icon 
+        icon="fa-solid fa-eye" 
+        class="icon"
+        @click="showPassword('2')"
+        />
     </div>
-    <my-button type="submit" class="btn">Зарегистрироваться</my-button>
+
+    <my-button 
+      type="submit" 
+      class="btn"
+      :class="{ BtnEnable:!isBtnEnable }"
+      >Зарегистрироваться</my-button>
   </form>
   <router-link to="/login" class="form__question"> Уже есть аккaунт?</router-link>
   <form-offer></form-offer>
@@ -68,6 +90,7 @@ export default {
   data() {
     return {
       isValid: true,
+      isBtnEnable:true,
       username:'',
       email:'',
       password: '',
@@ -92,7 +115,9 @@ export default {
     ]),
 
     validations() {
-      console.log(this.password)
+     const btn =  document.querySelector('.btn')
+     console.log(btn.attributes.type.value)
+     btn.setAttribute('disabled', 'disabled')
       if (
         this.username_reg.test(this.username) &&
         this.email_reg.test(this.email) &&
@@ -100,9 +125,35 @@ export default {
         this.password === this.password_2
           ){
             this.isValid = true
-           } else { this.isValid = false}
-           console.log(this.isValid, this.password_reg)
-           
+            this.isBtnEnable = true
+            btn.removeAttribute('disabled')
+           } else {
+             this.isValid = false
+             this.isBtnEnable = false
+            }          
+    },
+
+    showPassword(id) {
+ 
+      const firstPassword = document.getElementById('password_1')
+      const secondPassword = document.getElementById('password_2')
+      if (id === "1") {
+        if (firstPassword.attributes.type.textContent === 'password') {
+            firstPassword.attributes.type.textContent = 'text'
+            return
+        } 
+        if (firstPassword.attributes.type.textContent === "text") {
+            firstPassword.attributes.type.textContent = 'password';
+        }
+      } 
+      else if (id === "2") {
+        if (secondPassword.attributes.type.textContent === 'password') {
+            secondPassword.attributes.type.textContent = 'text';
+            return
+        } else {
+          secondPassword.attributes.type.textContent = 'password';
+        }
+      }
     },
 
     onSubmit() {
@@ -123,8 +174,7 @@ export default {
   },
 
   mounted(){
-    
-   
+     
   }
 
 }
@@ -149,6 +199,7 @@ form{
 
 .input-box{
   @include input-box;
+  position: relative;
 }
 
 .btn{
@@ -174,9 +225,22 @@ form{
   line-height: 1.5;
   padding: 0.7rem 1.25rem;
   outline: none;
+ 
+}
+.icon{
+  position:absolute;
+  top: 4.5rem;
+  right: 1.5rem;
+  font-size: 1.5rem;
+  color:$main-color;
+  cursor: pointer;
 }
 
 .invalid{
   border: 1px solid red;
+}
+.BtnEnable{
+  opacity: 0.5;
+  cursor:not-allowed
 }
 </style>
