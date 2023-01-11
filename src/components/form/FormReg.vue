@@ -175,25 +175,20 @@ export default {
 
     onSubmit() {
       this.validations();
-      // let data = {
-      //   full_name: this.username,
-      //   email: this.email,
-      //   password: this.password,
-      //   password_2: this.password_2,
-      // }
+      let data = {
+        full_name: this.username,
+        email: this.email,
+        password: this.password,
+        password_2: this.password_2,
+      }
      
-      // this.registration(data)
-      //   .then(user => {
-      //   console.log('successfully register user', user)
-      //   this.$router.push('/login')
-      // })
+      this.registration(data)
+        .then(user => {
+        console.log('successfully register user', user)
+        this.$router.push('/login')
+      })
     }
   },
-
-  mounted(){
-     
-  }
-
 }
 </script>
 
