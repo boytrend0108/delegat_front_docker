@@ -39,7 +39,6 @@
         @input="validations"
         :class="{ invalid:!isValid }"
         />
-    
       <p>abcABC123$</p>
     </div>
     <div class="input-box">
@@ -48,6 +47,8 @@
         type="password" 
         id="password_2"  
         v-model.trim='password_2'
+        @input="validations"
+        :class="{ invalid:!isValid }"
        />
     </div>
     <my-button type="submit" class="btn">Зарегистрироваться</my-button>
@@ -95,8 +96,8 @@ export default {
       if (
         this.username_reg.test(this.username) &&
         this.email_reg.test(this.email) &&
-        this.password_reg.test(this.password) 
-      
+        this.password_reg.test(this.password) &&
+        this.password === this.password_2
           ){
             this.isValid = true
            } else { this.isValid = false}
