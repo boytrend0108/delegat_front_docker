@@ -11,21 +11,48 @@
           />
     <div class="input-box">
       <label for="name" class="form-label">ФИО</label>
-      <my-input type="text" id="name" v-model='username'/>
+      <my-input 
+        type="text" 
+        id="name" 
+        v-model.trim='username' 
+        :class="{ invalid: (v$.username.$dirty && !v$.username.required) || 
+                           (v$.username.$dirty && !v$.username.password) }"
+        />
+      <!-- <div v-if="v$.name.$error"> Name field has an error. </div> -->
     </div>
-    <div class="input-box">
+    <!-- <div class="input-box">
       <label for="email" class="form-label">E-mail</label>
-      <my-input type="email" id="email"  v-model='email' />
+      <my-input 
+        type="email" 
+        id="email"  
+        v-model.trim='email'
+        :class="{ invalid: ($v.email.$dirty && !$v.email.required) || 
+                           ($v.email.$dirty && !$v.email.password) }"
+        />
+      <div v-if="v$.email.$error">Name field has an error.</div>
     </div>
     <div class="input-box">
       <label for="phone" class="form-label">Пароль</label>
-      <my-input type="password" id="password"  v-model='password' />
+      <my-input 
+        type="password" 
+        id="password"  
+        v-model.trim='password'
+        :class="{ invalid: ($v.password.$dirty && !$v.password.required) || 
+                           ($v.password.$dirty && !$v.password.password) }"
+        />
+      <div v-if="v$.password.$error">Name field has an error.</div>
       <p>gjgj_Ujk25</p>
     </div>
     <div class="input-box">
       <label for="phone" class="form-label">Повторите пароль</label>
-      <my-input type="password" id="password_2"  v-model='password_2' />
-    </div>
+      <my-input 
+        type="password" 
+        id="password_2"  
+        v-model.trim='password_2'
+        :class="{ invalid: ($v.password_2.$dirty && !$v.password_2.required) || 
+                           ($v.password_2.$dirty && !$v.password_2.password) }"
+       />
+    </div> -->
     <my-button type="submit" class="btn">Зарегистрироваться</my-button>
   </form>
   <router-link to="/login" class="form__question"> Уже есть аккaунт?</router-link>
@@ -36,9 +63,14 @@
 import FormOffer from '@/components/form/FormOffer.vue';
 import McvValidationErrors from '@/components/ValidationErrors'
 import {mapGetters, mapActions} from 'vuex'
+import { useVuelidate } from '@vuelidate/core'
+import { required, email, minLength  } from '@vuelidate/validators'
 
 export default {
   name: 'form-reg',
+  setup () {
+    return { v$: useVuelidate() }
+  },
   data() {
     return {
       username:'',
@@ -46,6 +78,15 @@ export default {
       password: '',
       password_2: '',
     }
+  },
+  validations () {
+    return{
+      username:{ required },
+      email:{ required, email },
+      password: { required, minLength: minLength(8) },
+      password_2: { required },
+    }
+     
   },
   components: {
     FormOffer, McvValidationErrors
@@ -62,6 +103,11 @@ export default {
     ]),
 
     onSubmit() {
+      if(this.v$.$invalid){
+        this.v$.$touch()
+        return
+      }
+   
       let data = {
         full_name: this.username,
         email: this.email,
@@ -76,6 +122,11 @@ export default {
       })
     }
   },
+
+  mounted(){
+    // console.log(this.v$)
+   
+  }
 
 }
 </script>
@@ -124,5 +175,9 @@ form{
   line-height: 1.5;
   padding: 0.7rem 1.25rem;
   outline: none;
+}
+
+.invalid{
+  border: 1px solid red;
 }
 </style>
