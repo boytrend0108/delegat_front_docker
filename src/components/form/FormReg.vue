@@ -14,34 +14,33 @@
       <my-input 
         type="text" 
         id="name" 
-        v-model.trim='username' 
-        :class="{ invalid: (v$.username.$dirty && !v$.username.required) || 
-                           (v$.username.$dirty && !v$.username.password) }"
+        v-model.trim='username'
+        @input="validations"
+        :class="{ invalid:!isValid }"
         />
-      <!-- <div v-if="v$.name.$error"> Name field has an error. </div> -->
+        <p>Иванов Иван Иванович</p>
     </div>
-    <!-- <div class="input-box">
+    <div class="input-box">
       <label for="email" class="form-label">E-mail</label>
       <my-input 
         type="email" 
         id="email"  
         v-model.trim='email'
-        :class="{ invalid: ($v.email.$dirty && !$v.email.required) || 
-                           ($v.email.$dirty && !$v.email.password) }"
+        @input="validations"
+        :class="{ invalid:!isValid }"
         />
-      <div v-if="v$.email.$error">Name field has an error.</div>
+        <p>ggg@ff.jj</p>
     </div>
     <div class="input-box">
       <label for="phone" class="form-label">Пароль</label>
       <my-input 
-        type="password" 
-        id="password"  
+        type="password"
         v-model.trim='password'
-        :class="{ invalid: ($v.password.$dirty && !$v.password.required) || 
-                           ($v.password.$dirty && !$v.password.password) }"
+        @input="validations"
+        :class="{ invalid:!isValid }"
         />
-      <div v-if="v$.password.$error">Name field has an error.</div>
-      <p>gjgj_Ujk25</p>
+    
+      <p>abcABC123$</p>
     </div>
     <div class="input-box">
       <label for="phone" class="form-label">Повторите пароль</label>
@@ -49,50 +48,39 @@
         type="password" 
         id="password_2"  
         v-model.trim='password_2'
-        :class="{ invalid: ($v.password_2.$dirty && !$v.password_2.required) || 
-                           ($v.password_2.$dirty && !$v.password_2.password) }"
        />
-    </div> -->
+    </div>
     <my-button type="submit" class="btn">Зарегистрироваться</my-button>
   </form>
   <router-link to="/login" class="form__question"> Уже есть аккaунт?</router-link>
   <form-offer></form-offer>
+  
 </template>
 
 <script>
 import FormOffer from '@/components/form/FormOffer.vue';
 import McvValidationErrors from '@/components/ValidationErrors'
 import {mapGetters, mapActions} from 'vuex'
-import { useVuelidate } from '@vuelidate/core'
-import { required, email, minLength  } from '@vuelidate/validators'
 
 export default {
   name: 'form-reg',
-  setup () {
-    return { v$: useVuelidate() }
-  },
   data() {
     return {
+      isValid: true,
       username:'',
       email:'',
       password: '',
       password_2: '',
+      username_reg: /^[А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+$/,
+      email_reg:  /.+@.+\..+/i,
+      password_reg:  /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$/,
     }
   },
-  validations () {
-    return{
-      username:{ required },
-      email:{ required, email },
-      password: { required, minLength: minLength(8) },
-      password_2: { required },
-    }
-     
-  },
+  
   components: {
     FormOffer, McvValidationErrors
   },
  
-
   computed:{
    ...mapGetters(['isSubmitting',"validationErrors" ])
   },
@@ -102,29 +90,39 @@ export default {
      'registration', 'login'
     ]),
 
-    onSubmit() {
-      if(this.v$.$invalid){
-        this.v$.$touch()
-        return
-      }
-   
-      let data = {
-        full_name: this.username,
-        email: this.email,
-        password: this.password,
-        password_2: this.password_2,
-      }
+    validations() {
+      console.log(this.password)
+      if (
+        this.username_reg.test(this.username) &&
+        this.email_reg.test(this.email) &&
+        this.password_reg.test(this.password) 
+      
+          ){
+            this.isValid = true
+           } else { this.isValid = false}
+           console.log(this.isValid, this.password_reg)
+           
+    },
 
-      this.registration(data)
-        .then(user => {
-        console.log('successfully register user', user)
-        this.$router.push('/login')
-      })
+    onSubmit() {
+      this.validations();
+      // let data = {
+      //   full_name: this.username,
+      //   email: this.email,
+      //   password: this.password,
+      //   password_2: this.password_2,
+      // }
+     
+      // this.registration(data)
+      //   .then(user => {
+      //   console.log('successfully register user', user)
+      //   this.$router.push('/login')
+      // })
     }
   },
 
   mounted(){
-    // console.log(this.v$)
+    
    
   }
 
