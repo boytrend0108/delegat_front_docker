@@ -10,7 +10,7 @@
             :validation-errors='validationErrors'
           />
 
-    <!-- <div class="input-box">
+    <div class="input-box">
       <label for="name" class="form-label">ФИО</label>
       <my-input 
         type="text" 
@@ -32,7 +32,7 @@
         :class="{ invalid:!isValid }"
         />
         <p>ggg@ff.jj</p>
-    </div> -->
+    </div>
 
     <div class="input-box">
       <label for="password" class="form-label">Пароль</label>
@@ -132,7 +132,7 @@ export default {
      const btn =  document.querySelector('.btn')
      console.log(this.password === this.password_2)
      btn.setAttribute('disabled', 'disabled')
-      if (this.password === this.password_2)
+      if ((this.password === this.password_2) && (this.username_reg.test(this.username)) && ( this.email_reg.test(this.email)) )
         // this.username_reg.test(this.username) &&
         // this.email_reg.test(this.email) &&
         // RegTest === true && 
