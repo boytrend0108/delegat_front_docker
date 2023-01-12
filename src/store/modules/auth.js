@@ -35,19 +35,21 @@ export default {
           })
       })
     },
-    login({commit}, credentials) {
+
+    LOGIN({commit}, credentials) {
+      console.log(credentials)
       return new Promise((resolve) => {
         commit("loginStart")
         authApi
           .login(credentials)
           .then((response) => {
             console.log('response', response)
-            commit('loginSuccess', response.data.user)
-            setItem('accessToken', response.data.user.token)
-            resolve(response.data.user)
+            commit('loginSuccess', response.data)
+            setItem('accessToken', response.data.access_token)
+            resolve(response.data)
           })
           .catch((result) => {
-            commit('loginFailed', result.response.data.detail)
+            commit('loginFailed', result.response.data)
           })
       })
     },

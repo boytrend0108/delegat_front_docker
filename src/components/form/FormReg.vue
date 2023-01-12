@@ -3,7 +3,8 @@
   <form 
     class="form" 
     id="reg-form" 
-    @submit.prevent='onSubmit'>
+    @submit.prevent='onSubmit'
+    >
     <h2 class="form-title">Регистрация</h2>
     <mcv-validation-errors
             v-if='validationErrors'

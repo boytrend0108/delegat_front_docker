@@ -1,5 +1,9 @@
 <template>
-  <form class="form" id="login-form">
+  <form 
+    class="form" 
+    id="login-form"
+    @submit.prevent='onSubmit'
+    >
     <h2 class="form-title">Вход</h2>
 
     <div class="input-box">
@@ -52,6 +56,7 @@
 
 <script>
 import FormOffer from '@/components/form/FormOffer.vue';
+import { mapActions } from 'vuex';
 
 
   export default {
@@ -88,7 +93,6 @@ import FormOffer from '@/components/form/FormOffer.vue';
 
     validations() {
       const btn = document.querySelector('.btn')
-      console.log(btn.attributes.type.value)
       btn.setAttribute('disabled', 'disabled')
       if (
         this.email_reg.test(this.email) &&
@@ -102,18 +106,20 @@ import FormOffer from '@/components/form/FormOffer.vue';
         this.isBtnEnable = false
       }
     },
+     ...mapActions([
+      'LOGIN'
+     ]),
 
     onSubmit() {
-      console.log('click')
       this.validations();
       let data = {
         email: this.email,
         password: this.password,
       }
-      this.login(data)
+      this.LOGIN(data)
         .then(user => {
-        console.log('successfully register user', user)
-        this.$router.push('/login')
+        console.log('successfully sing in', user)
+        this.$router.push('/')
       })
     }
   },
