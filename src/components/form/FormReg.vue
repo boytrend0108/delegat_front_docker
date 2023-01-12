@@ -10,7 +10,7 @@
             :validation-errors='validationErrors'
           />
 
-    <div class="input-box">
+    <!-- <div class="input-box">
       <label for="name" class="form-label">ФИО</label>
       <my-input 
         type="text" 
@@ -32,10 +32,10 @@
         :class="{ invalid:!isValid }"
         />
         <p>ggg@ff.jj</p>
-    </div>
+    </div> -->
 
     <div class="input-box">
-      <label for="phone" class="form-label">Пароль</label>
+      <label for="password" class="form-label">Пароль</label>
       <my-input 
         type="password"
         class="input"
@@ -111,7 +111,7 @@ export default {
       password_2: '',
       username_reg: /^[А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+$/,
       email_reg:  /.+@.+\..+/i,
-      password_reg:  /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$/,
+      password_reg: /(?=.*[0-9])(?=.*[!@#$%^&*_-])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*].{8,}/g,
     }
   },
   
@@ -130,17 +130,16 @@ export default {
 
     validations() {
      const btn =  document.querySelector('.btn')
-     console.log(btn.attributes.type.value)
+     console.log(this.password === this.password_2)
      btn.setAttribute('disabled', 'disabled')
-      if (
-        this.username_reg.test(this.username) &&
-        this.email_reg.test(this.email) &&
-        this.password_reg.test(this.password) &&
-        this.password === this.password_2
-          ){
-            this.isValid = true
-            this.isBtnEnable = true
-            btn.removeAttribute('disabled')
+      if (this.password === this.password_2)
+        // this.username_reg.test(this.username) &&
+        // this.email_reg.test(this.email) &&
+        // RegTest === true && 
+          { 
+             this.isValid = true
+             this.isBtnEnable = true
+             btn.removeAttribute('disabled')
            } else {
              this.isValid = false
              this.isBtnEnable = false
@@ -201,11 +200,10 @@ form{
   @include form-title;
 }
 .form-label {
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   color: #809fb8;
   display: inline;
   font-size: 1.3rem;
-  margin-bottom: 0.5rem;
   font-weight: 600;
 }
 
@@ -241,7 +239,7 @@ form{
 }
 .icon{
   position:absolute;
-  top: 4.5rem;
+  top: 4.2rem;
   right: 1.5rem;
   font-size: 1.5rem;
   color:$main-color;

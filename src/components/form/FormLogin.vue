@@ -67,7 +67,7 @@ import FormOffer from '@/components/form/FormOffer.vue';
       email: '',
       password: '',
       email_reg: /.+@.+\..+/i,
-      password_reg: /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$/,
+      password_reg: /(?=.*[0-9])(?=.*[!@#$%^&*_-])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*].{8,}/g,
     }
   },
   methods: {
@@ -102,6 +102,20 @@ import FormOffer from '@/components/form/FormOffer.vue';
         this.isBtnEnable = false
       }
     },
+
+    onSubmit() {
+      console.log('click')
+      this.validations();
+      let data = {
+        email: this.email,
+        password: this.password,
+      }
+      this.login(data)
+        .then(user => {
+        console.log('successfully register user', user)
+        this.$router.push('/login')
+      })
+    }
   },
     
   }
