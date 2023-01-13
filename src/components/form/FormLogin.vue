@@ -12,7 +12,7 @@
         type="email" 
         id="email" 
         @input="validations"
-        :class="{ invalid:!isValid }"
+        :class="{ invalid:!IS_VALID }"
         v-model.trim='email'
         />
         <p>ggg@ff.jj</p>
@@ -26,7 +26,7 @@
         id="password_1" 
         v-model.trim='password'
         @input="validations"
-        :class="{ invalid:!isValid }"  />
+        :class="{ invalid:!IS_VALID }"  />
       <font-awesome-icon
         v-if="showPass1"
         icon="fa-solid fa-eye" 
@@ -56,8 +56,7 @@
 
 <script>
 import FormOffer from '@/components/form/FormOffer.vue';
-import { mapActions } from 'vuex';
-
+import { mapActions, mapGetters, mapMutations } from 'vuex';
 
   export default {
     components:{
@@ -65,7 +64,7 @@ import { mapActions } from 'vuex';
     },
   data() {
     return {
-      isValid: true,
+      // isValid: true,
       isBtnEnable: true,
       showPass1: true,
       showPass2: true,
@@ -75,7 +74,29 @@ import { mapActions } from 'vuex';
       password_reg: /(?=.*[0-9])(?=.*[!@#$%^&*_-])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*].{8,}/g,
     }
   },
+
+  computed:{
+    ...mapGetters([
+      'IS_VALID','EMAIL','PASSWORD'
+    ]), 
+  },
+
   methods: {
+    ...mapActions(
+     ['LOGIN','GET_EMAIL']
+    ),
+    ...mapMutations([
+      'SWITCH_IS_VALID','SET_FORM_DATA'
+     ]),
+
+    sendFormData(email, password) {
+      const formData = {
+        email: email,
+        password: password
+      }
+      this.SET_FORM_DATA(formData)
+    },
+
     showPassword(id) {
       const firstPassword = document.getElementById('password_1')
       if (id === "1") {
@@ -90,26 +111,24 @@ import { mapActions } from 'vuex';
         }
       }
     },
-
+    
     validations() {
+      this.sendFormData(this.email, this.password);
       const btn = document.querySelector('.btn')
       btn.setAttribute('disabled', 'disabled')
       if (
         this.email_reg.test(this.email) &&
         this.password_reg.test(this.password)
       ) {
-        this.isValid = true
+        this.SWITCH_IS_VALID(true);
         this.isBtnEnable = true
         btn.removeAttribute('disabled')
       } else {
-        this.isValid = false
+        this.SWITCH_IS_VALID(false);
         this.isBtnEnable = false
       }
     },
-     ...mapActions([
-      'LOGIN'
-     ]),
-
+    
     onSubmit() {
       this.validations();
       let data = {
