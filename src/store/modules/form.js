@@ -18,8 +18,12 @@ export default {
   actions: {
     GET_EMAIL({commit}, email){
       commit('SET_EMAIL', email)
+    },
+    A_CLEAR_FORM(){
+      document.querySelector("#login-form").reset()
     }
   },
+
   mutations: {
     SWITCH_IS_VALID(state, param){
       state.isValid = param
@@ -27,7 +31,14 @@ export default {
     SET_FORM_DATA(state,formData){
       state.email = formData.email
       state.password = formData.password
+     
+    },
+    CLEAR_FORM(state){
+      state.email = ''
+      state.password = ''
+      state.isValid = true
+      // document.querySelector("#login-form").reset()
       console.log(state.email, state.password)
-    } 
+    }
   }
 }

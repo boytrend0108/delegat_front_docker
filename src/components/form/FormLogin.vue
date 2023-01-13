@@ -1,4 +1,4 @@
-<template>
+<template >
   <form 
     class="form" 
     id="login-form"
@@ -95,6 +95,11 @@ import { mapActions, mapGetters, mapMutations } from 'vuex';
         password: password
       }
       this.SET_FORM_DATA(formData)
+    },
+
+    clearForm(){
+      this.email = ''
+      this.password = ""
     },
 
     showPassword(id) {

@@ -1,4 +1,4 @@
-<template>
+<template >
   <div 
     class="dialog" 
      v-if="showDialog"
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, } from 'vuex';
 export default {
    name:'my-dialog',
    props:{
@@ -26,11 +26,13 @@ export default {
 
    methods:{
     ...mapMutations([
-    'SWITCH_IS_VALID'
+     'CLEAR_FORM'
    ]),
 
     clearForm(){
-     this.SWITCH_IS_VALID(true)
+     document.querySelector("#login-form").reset()
+     this.CLEAR_FORM()
+    
    },
    
    }
