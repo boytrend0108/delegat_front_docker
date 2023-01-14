@@ -1,19 +1,20 @@
 <template>
-  <component :is="layout">
+  <component :is="layout" >
     <router-view />
   </component>
 </template>
 
 <script>
 import MainLayout from '@/layouts/MainLayout.vue'
+import StartLayout from '@/layouts/StartLayout.vue'
    export default {
     components: {
-    MainLayout
+    MainLayout, StartLayout
   },
 
     computed:{
       layout(){
-        return(this.$route.meta.layout || 'main-layout')
+        return(this.$route.meta.layout || 'start-layout')
       }
     }
 }

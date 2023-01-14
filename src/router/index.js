@@ -8,6 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
+    meta: {layout:'start-layout'},
     component: HomeView
   },
   {
