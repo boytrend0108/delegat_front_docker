@@ -8,13 +8,11 @@
       <h2 class="selector__title">Из какой страны вы планируете завозить товары?</h2>
       <div class="input-box">
         <my-input class="selector__input" placeholder="Haпример: Китай" />
-        <my-button class="input-box__btn">Найти</my-button>
+        <my-button 
+        class="input-box__btn"
+        @click="SET_COUNTRY(COUNTRY)"
+        >Найти</my-button>
       </div>
-      <!-- <ul class="selector__ul">
-        <li class="selector__li" @click="">Китай</li>
-        <li class="selector__li">Германия</li>
-        <li class="selector__li">Казахстан</li>
-      </ul> -->
     </div>
 
     <div class="options">
@@ -46,6 +44,7 @@
 
 <script>
 import OptionBox from '@/components/Option-box.vue';
+import { mapMutations, mapGetters } from 'vuex';
 export default {
   name: 'HomeView',
   components: {
@@ -53,18 +52,23 @@ export default {
   },
   data() {
     return {
-
       message: 'Hello!!',
       counter: 0,
     }
   },
-  methods: {
-    test(event) {
-      console.log(event)
-      // console.log($event)
-    }
 
+  computed:{
+    ...mapGetters([
+      'COUNTRY'
+    ])
   },
+
+  methods: {
+    ...mapMutations([
+      'SET_COUNTRY'
+    ]),
+  },
+
   mounted() {
 
   }

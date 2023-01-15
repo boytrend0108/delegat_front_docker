@@ -10,10 +10,11 @@
     >
     <ul v-if="showList" class="input__ul">
       <li 
-         @click="select" 
+        @click="select"
         v-for="country in filteredCountry" 
         :key="country.id" 
-        class="input__li">{{ country }}</li>
+        class="input__li">{{ country }}
+      </li>
     </ul>
     <ul class="selector__ul">
         <li class="selector__li"  @click="select">Китай</li>
@@ -27,19 +28,27 @@
 
 <script>
 import countriesList from "@/api/countries"
+import { mapMutations } from "vuex"
   export default {
     name:'my-input',
     data(){
       return{
         value:'',
-        showList: true,
+        showList: false,
         countries: countriesList ,
         filteredCountry:[]    
       }
     },
     methods:{
+
+      ...mapMutations([
+        'SET_COUNTRY'
+      ]),
+
       showListFn(){
-        // this.showList = !this.showList
+        setTimeout(()=>{
+          this.showList = !this.showList
+        }, 200)    
       },
 
       filterCountryFn(){
@@ -48,7 +57,10 @@ import countriesList from "@/api/countries"
       },
       select($event){
         this.value = $event.target.textContent
-      }
+        this.SET_COUNTRY(this.value)
+      },
+
+    
     }
   }
 </script>

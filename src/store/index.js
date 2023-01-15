@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import auth from '@/store/modules/auth'
 import form from '@/store/modules/form'
+import worksheet from "@/store/modules/worksheet"
 
 export default createStore({
   state: {
@@ -12,6 +13,6 @@ export default createStore({
   actions: {
   },
   modules: {
-    auth, form
+    auth, form, worksheet,
   }
 })
