@@ -22,13 +22,14 @@
 </template>
 
 <script>
+import countriesList from "@/api/countries"
   export default {
     name:'my-input',
     data(){
       return{
         value:'',
         showList: true,
-        countries:['A','Aountry2','Bountry3','Country4','Country1','Dountry2','Bountry3','Country4'],
+        countries: countriesList ,
         filteredCountry:[]    
       }
     },
