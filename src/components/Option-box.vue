@@ -14,7 +14,13 @@
 <style lang="scss" scoped>
  .option-box{
   width: 60rem;
-  height: 40rem;
+  height: 47.2rem;
   border: 2px solid #D9E1E7;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 6.6rem 6rem  6rem 6rem;
+  
+  
  }
 </style>

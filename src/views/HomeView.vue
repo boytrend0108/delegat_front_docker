@@ -7,8 +7,8 @@
     <div class="selector">
       <h2 class="selector__title">Из какой страны вы планируете завозить товары?</h2>
       <div class="input-box">
-        <my-input class="selector__input" placeholder="Haпример: Китай"></my-input>
-      <my-button class="input-box__btn">Найти</my-button>
+        <my-input class="selector__input" placeholder="Haпример: Китай" />
+        <my-button class="input-box__btn">Найти</my-button>
       </div>
       <ul class="selector__ul">
         <li class="selector__li">Китай</li>
@@ -18,7 +18,7 @@
     </div>
 
     <div class="options">
-      <option-box>
+      <option-box class="option-box">
         <div class="option__icon">
           <slot></slot>
         </div>
@@ -27,7 +27,7 @@
         <p class="option__text">
           Подходит тем, кто не сталкивался с ВЭД и не знаете, например, как заплатить на фабрику / поставщику. Наши специалисты проведут вас от заказа товара у поставщика до принятия его на вашем складе
         </p>
-        <white-button>Заказать</white-button>
+        <white-button class="option_btn">Заказать</white-button>
       </option-box>
 
         <option-box>
@@ -37,7 +37,7 @@
         <img src="@/assets/images/icons/user.svg" alt="icon" class="icon">
         <h3 class="option__title">Личный менеджер на поставку</h3>
         <p class="option__text">Подходит тем, кто не сталкивался с ВЭД и не знаете, например, как заплатить на фабрику / поставщику. Наши специалисты проведут вас от заказа товара у поставщика до принятия его на вашем складе</p>
-        <white-button>Заказать</white-button>
+        <white-button class="option_btn">Заказать</white-button>
       </option-box>
     </div>
 
@@ -66,12 +66,16 @@ export default {
 
   },
   mounted() {
-    console.log(this.$data)
+
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
+.content{
+  margin-bottom: 12.2rem;
+}
 .title {
   font-weight: 600;
   font-size: 64px;
@@ -80,6 +84,10 @@ export default {
   color: #244156;
 }
 
+.icon{
+  width: 4.8rem;
+  height: 4.8rem;
+}
 .selector{
   margin-bottom: 10rem;
 }
@@ -114,14 +122,37 @@ export default {
   display: flex;
   gap: 3rem;
 }
+
+.option__text {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 26px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #416782;
+  width: 48rem;
+  text-align: left;
+}
+
+.option__title{
+font-weight: 600;
+font-size: 24px;
+line-height: 36px;
+font-feature-settings: 'pnum' on, 'lnum' on;
+color: #244156;
+margin: 5rem 0 2rem 0 ;
+}
+
+.option_btn{
+  margin-top:6rem;
+}
 .input-box{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   margin-bottom: 2rem;
 }
 .input-box__btn{
-  width: 24rem !important;
+  width: $input-box__btn_width !important;
   height: 6.6rem;
   border-radius: 0 1rem 1rem 0 !important;
 }
