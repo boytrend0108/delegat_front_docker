@@ -10,11 +10,11 @@
         <my-input class="selector__input" placeholder="Haпример: Китай" />
         <my-button class="input-box__btn">Найти</my-button>
       </div>
-      <ul class="selector__ul">
-        <li class="selector__li">Китай</li>
+      <!-- <ul class="selector__ul">
+        <li class="selector__li" @click="">Китай</li>
         <li class="selector__li">Германия</li>
         <li class="selector__li">Казахстан</li>
-      </ul>
+      </ul> -->
     </div>
 
     <div class="options">
@@ -116,6 +116,7 @@ export default {
   line-height: 26px;
   font-feature-settings: 'pnum' on, 'lnum' on;
   color: #416782;
+  cursor: pointer;
 }
 
 .options {

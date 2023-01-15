@@ -10,12 +10,16 @@
     >
     <ul v-if="showList" class="input__ul">
       <li 
-        @click="select" 
+         @click="select" 
         v-for="country in filteredCountry" 
         :key="country.id" 
         class="input__li">{{ country }}</li>
-     
     </ul>
+    <ul class="selector__ul">
+        <li class="selector__li"  @click="select">Китай</li>
+        <li class="selector__li"  @click="select">Германия</li>
+        <li class="selector__li"  @click="select">Казахстан</li>
+      </ul>
 </div>
    
   
@@ -113,6 +117,28 @@ import countriesList from "@/api/countries"
   background:#416782;
   border-radius: 5px;
 }
+
+.selector__ul{
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.8rem;
+}
+.selector__li {
+  width: 11.2rem;
+  height: 4.2rem;
+  background: #F1F4FA;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 26px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #416782;
+  cursor: pointer;
+}
+
 
 
 </style>
