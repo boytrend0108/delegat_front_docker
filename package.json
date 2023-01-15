@@ -18,6 +18,7 @@
     "axios": "^1.2.2",
     "core-js": "^3.8.3",
     "imask": "^6.4.3",
+    "materialize-css": "^1.0.0-rc.2",
     "normalize-scss": "^7.0.1",
     "sass": "^1.57.1",
     "sass-loader": "^13.2.0",

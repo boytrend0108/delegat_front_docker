@@ -1,16 +1,7 @@
 <template>
-  <div class="option-box">
-    <div class="option__icon">
-      <slot></slot>
-    </div>
-    <img src="" alt="icon" class="icon">
-    <h3 class="option__title">
-      <slot></slot>
-    </h3>
-    <button class="option__btn">
-      <slot></slot>
-    </button>
-  </div>
+  <article class="option-box">
+   <slot></slot>
+  </article>
 </template>
 
 <script>

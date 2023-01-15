@@ -33,9 +33,6 @@ import MyLogo from '@/components/UI/MyLogo.vue';
 
 <style lang="scss" scoped>
 
-.display{
- 
-}
 
 .container{
    padding: 0 2rem;
@@ -43,10 +40,6 @@ import MyLogo from '@/components/UI/MyLogo.vue';
    display: flex;
    flex-direction: column;
    width: 1270px; // 1230 + 20 + 20
-}
-
-.header-container{
-  
 }
 
 .header{
@@ -69,11 +62,5 @@ import MyLogo from '@/components/UI/MyLogo.vue';
   gap:1rem;
 
 }
-
-.nav__li{
-
-}
-
-
 
 </style>
