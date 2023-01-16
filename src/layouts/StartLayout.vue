@@ -1,5 +1,4 @@
 <template>
-
     <div class="container header-container">
     <header class="header">
       <MyLogo />
@@ -13,7 +12,6 @@
     </header>
   </div>
 
-   
   <div class="container">
     <main class="main-box">
       <router-view />
