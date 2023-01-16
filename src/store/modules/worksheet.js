@@ -1,9 +1,13 @@
 export default {
   state:{
+    input:'',
     country:'',
-    sity:"",
+    city:"",
   },
   getters: {
+    INPUT(state){
+      return state.input
+    },
     COUNTRY(state){
       return state.country
     },
@@ -13,8 +17,17 @@ export default {
   },
   actions: {},
   mutations: {
-    SET_COUNTRY(state, country){
-      state.country = country
+    SAVE_INPUT_VALUE(state,value){
+      state.input = value;
+    },
+    
+    SET_INPUT(state, data){
+      console.log(data)
+      if(data.inputPath === '/'){
+        state.country = data.inputValue
+      } else if(data.inputPath === 'cities'){
+        state.city = data.inputValue
+      }
     }
   }
 }

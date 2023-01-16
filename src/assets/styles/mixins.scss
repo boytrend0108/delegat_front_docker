@@ -28,3 +28,20 @@
     text-decoration: none;
     padding: 0.5rem;
 }
+
+@mixin selector__li{
+  padding: 0.8rem 3rem;
+  width: fit-content;
+  height: 4.2rem;
+  background: #F1F4FA;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 26px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #416782;
+  cursor: pointer;
+}

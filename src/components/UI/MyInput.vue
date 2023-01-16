@@ -7,42 +7,59 @@
     @focus="showListFn" 
     @blur="showListFn"
     @input="filterCountryFn"
+    :placeholder="setPlaceholder"
     >
     <ul v-if="showList" class="input__ul">
       <li 
         @click="select"
-        v-for="country in filteredCountry" 
+        v-for="country in filtered" 
         :key="country.id" 
         class="input__li">{{ country }}
       </li>
     </ul>
-    <ul class="selector__ul">
-        <li class="selector__li"  @click="select">Китай</li>
-        <li class="selector__li"  @click="select">Германия</li>
-        <li class="selector__li"  @click="select">Казахстан</li>
-      </ul>
+
 </div>
    
   
 </template>
 
 <script>
-import countriesList from "@/api/countries"
-import { mapMutations } from "vuex"
+import inputData from "@/api/inputData"
+import { mapMutations, mapGetters } from "vuex"
+
   export default {
     name:'my-input',
     data(){
       return{
+        path: this.$route.path,
         value:'',
         showList: false,
-        countries: countriesList ,
-        filteredCountry:[]    
+        countries: inputData.countries ,
+        cities: inputData.cities,
+        filtered:[],
+        placeholder:'Например Китай'   
       }
     },
-    methods:{
 
+    computed:{
+      ...mapGetters([
+        'INPUT'
+      ]),
+
+      setPlaceholder(){ // dinamic placeholder
+        let msg = ''; 
+        if(this.$route.query.step === "cities"){
+          msg = "Например Москва"
+        }else if(this.$route.path === ('/')){
+          msg = 'Например Китай'
+        }
+        return msg
+      }
+
+    },
+    methods:{
       ...mapMutations([
-        'SET_COUNTRY'
+        'SET_INPUT', "SAVE_INPUT_VALUE"
       ]),
 
       showListFn(){
@@ -52,15 +69,31 @@ import { mapMutations } from "vuex"
       },
 
       filterCountryFn(){
-        this.filteredCountry = this.countries.filter(el => 
+        this.SAVE_INPUT_VALUE(this.value)
+        if(this.$route.path === '/'){
+          this.filtered = this.countries.filter(el => 
            el.toLowerCase().includes(this.value.toLowerCase()))
-      },
-      select($event){
-        this.value = $event.target.textContent
-        this.SET_COUNTRY(this.value)
+        } else if(this.$route.query.step === 'cities'){
+          this.filtered = this.cities.filter(el => 
+           el.toLowerCase().includes(this.value.toLowerCase()))
+        }
+          
       },
 
-    
+      select($event){
+        this.value = $event.target.textContent
+        const data = {
+          inputValue: this.value,
+          inputPath: this.path
+        } 
+        this.SET_INPUT(data)
+      },
+    },
+
+    watch:{
+       INPUT(){
+          this.value = this.INPUT
+       }
     }
   }
 </script>
@@ -91,7 +124,7 @@ import { mapMutations } from "vuex"
     .input__ul {
       transition: 1s;
       max-height: 200px;
-      width: calc(96% + $input-box__btn_width );
+      width: 100%;
       background: #FFFFFF;
       box-shadow: 0px 5px 20px rgba(6, 21, 43, 0.15);
       border-radius: 10px;
@@ -128,28 +161,9 @@ import { mapMutations } from "vuex"
 ::-webkit-scrollbar-thumb{
   background:#416782;
   border-radius: 5px;
+  height: 5rem;
 }
 
-.selector__ul{
-  display: flex;
-  gap: 1rem;
-  margin-top: 2.8rem;
-}
-.selector__li {
-  width: 11.2rem;
-  height: 4.2rem;
-  background: #F1F4FA;
-  border-radius: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 500;
-  font-size: 17px;
-  line-height: 26px;
-  font-feature-settings: 'pnum' on, 'lnum' on;
-  color: #416782;
-  cursor: pointer;
-}
 
 
 

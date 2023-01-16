@@ -7,12 +7,17 @@
     <div class="selector">
       <h2 class="selector__title">Из какой страны вы планируете завозить товары?</h2>
       <div class="input-box">
-        <my-input class="selector__input" placeholder="Haпример: Китай" />
+        <my-input class="selector__input" />
         <my-button 
-        class="input-box__btn"
-        @click="SET_COUNTRY(COUNTRY)"
+          class="input-box__btn"
+          @click="goToNext"
         >Найти</my-button>
       </div>
+      <ul class="selector__ul">
+        <li class="selector__li"  @click="select">Китай</li>
+        <li class="selector__li"  @click="select">Германия</li>
+        <li class="selector__li"  @click="select">Казахстан</li>
+    </ul>
     </div>
 
     <div class="options">
@@ -52,25 +57,55 @@ export default {
   },
   data() {
     return {
-      message: 'Hello!!',
-      counter: 0,
+      inputParam:{
+        inputValue: null,
+        inputPath: this.$route.path
+      },
+     
     }
   },
 
+
   computed:{
     ...mapGetters([
-      'COUNTRY'
-    ])
+      'COUNTRY', 'CITY', 'INPUT'
+    ]),
   },
 
   methods: {
     ...mapMutations([
-      'SET_COUNTRY'
+      'SET_INPUT',  'SAVE_INPUT_VALUE'
     ]),
+    
+    goToNext(){    
+      if (this.$route.path === '/') {
+        this.inputParam.inputValue = this.COUNTRY
+        this.SET_INPUT(this.inputParam)
+        this.$router.push('/application?step=cities')
+      } else if (this.$route.path === '/cities') {
+        this.inputParam.inputValue = this.CITY
+        this.SET_INPUT(this.inputParam)
+        this.$router.push('/application?item')
+      }
+    },
+
+    select($event){
+        let value = $event.target.textContent
+        this.SAVE_INPUT_VALUE(value)
+        const data = {
+          inputValue: value,
+          inputPath: this.$route.path
+        } 
+        this.SET_INPUT(data)
+      },
   },
 
-  mounted() {
-
+  mounted(){
+    if(this.$route.path === '/'){
+      this.inputParam.inputValue = this.COUNTRY
+    } else if(this.$route.path === '/cities'){
+      this.inputParam.inputValue = this.CITY
+    }
   }
 }
 </script>
@@ -108,19 +143,7 @@ export default {
   gap: 1rem;
 }
 .selector__li {
-  width: 11.2rem;
-  height: 4.2rem;
-  background: #F1F4FA;
-  border-radius: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 500;
-  font-size: 17px;
-  line-height: 26px;
-  font-feature-settings: 'pnum' on, 'lnum' on;
-  color: #416782;
-  cursor: pointer;
+  @include selector__li
 }
 
 .options {
@@ -161,4 +184,26 @@ margin: 5rem 0 2rem 0 ;
   height: 6.6rem;
   border-radius: 0 1rem 1rem 0 !important;
 }
+
+.selector__ul{
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.8rem;
+}
+.selector__li {
+  width: 11.2rem;
+  height: 4.2rem;
+  background: #F1F4FA;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 26px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #416782;
+  cursor: pointer;
+}
+
 </style>

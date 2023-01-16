@@ -25,6 +25,9 @@
   padding: 1.2rem;
   font-size: 2rem;
   transition: 0.6s;
+  display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn:hover{
