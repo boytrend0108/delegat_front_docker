@@ -7,6 +7,7 @@
     @focus="showListFn" 
     @blur="showListFn"
     @input="filterCountryFn"
+    placeholder="Например Китай"
     >
     <ul v-if="showList" class="input__ul">
       <li 
@@ -24,7 +25,7 @@
 
 <script>
 import inputData from "@/api/inputData"
-import { mapMutations } from "vuex"
+import { mapMutations, mapGetters } from "vuex"
 
   export default {
     name:'my-input',
@@ -37,6 +38,13 @@ import { mapMutations } from "vuex"
         cities: inputData.cities,
         filtered:[]    
       }
+    },
+
+    computed:{
+      ...mapGetters([
+        'INPUT'
+      ]),
+      
     },
     methods:{
       ...mapMutations([
@@ -61,6 +69,7 @@ import { mapMutations } from "vuex"
        
            console.log(this.path)
       },
+
       select($event){
         this.value = $event.target.textContent
         const data = {
@@ -69,6 +78,12 @@ import { mapMutations } from "vuex"
         } 
         this.SET_INPUT(data)
       },
+    },
+
+    watch:{
+       INPUT(){
+          this.value = this.INPUT
+       }
     }
   }
 </script>
