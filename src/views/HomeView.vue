@@ -5,7 +5,7 @@
   </header>
   <section class="content">
     <div class="selector">
-      <h2 class="selector__title">{{ setTitle }}</h2>
+      <h2 class="selector__title">Из какой страны вы планируете завозить товары?</h2>
       <div class="input-box">
         <my-input class="selector__input" placeholder="Haпример: Китай" />
         <my-button 
@@ -13,6 +13,11 @@
           @click="goToNext"
         >Найти</my-button>
       </div>
+      <ul class="selector__ul">
+        <li class="selector__li"  @click="select">Китай</li>
+        <li class="selector__li"  @click="select">Германия</li>
+        <li class="selector__li"  @click="select">Казахстан</li>
+    </ul>
     </div>
 
     <div class="options">
@@ -56,10 +61,7 @@ export default {
         inputValue: null,
         inputPath: this.$route.path
       },
-      title:{
-        countries: 'Из какой страны вы планируете завозить товары?',
-        cities: 'В какой город РФ нужно доставить товары?'
-      } 
+     
     }
   },
 
@@ -68,14 +70,7 @@ export default {
       'COUNTRY', 'CITY'
     ]),
 
-    setTitle(){
-       if(this.$route.path === '/'){
-         return this.title.countries
-       } else if(this.$route.path === '/application?cities'){
-         return this.title.cities
-       }
-       return ''
-    },
+   
   },
 
   methods: {
@@ -87,7 +82,7 @@ export default {
       if (this.$route.path === '/') {
         this.inputParam.inputValue = this.COUNTRY
         this.SET_INPUT(this.inputParam)
-        this.$router.push('/application?cities')
+        this.$router.push('/application?step=cities')
       } else if (this.$route.path === '/cities') {
         this.inputParam.inputValue = this.CITY
         this.SET_INPUT(this.inputParam)
@@ -140,19 +135,7 @@ export default {
   gap: 1rem;
 }
 .selector__li {
-  width: 11.2rem;
-  height: 4.2rem;
-  background: #F1F4FA;
-  border-radius: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 500;
-  font-size: 17px;
-  line-height: 26px;
-  font-feature-settings: 'pnum' on, 'lnum' on;
-  color: #416782;
-  cursor: pointer;
+  @include selector__li
 }
 
 .options {
@@ -193,4 +176,26 @@ margin: 5rem 0 2rem 0 ;
   height: 6.6rem;
   border-radius: 0 1rem 1rem 0 !important;
 }
+
+.selector__ul{
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.8rem;
+}
+.selector__li {
+  width: 11.2rem;
+  height: 4.2rem;
+  background: #F1F4FA;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 26px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #416782;
+  cursor: pointer;
+}
+
 </style>

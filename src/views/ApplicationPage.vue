@@ -1,12 +1,38 @@
 <template>
   <div>
-    <h2 class="title">В какой город РФ нужно доставить товары?</h2>
+    <h2 class="title">{{ setTitle }}</h2>
+    <my-input class="selector__input" placeholder="Haпример: Москва" />
+    <ul class="selector__ul">
+        <li class="selector__li"  @click="select">Москва</li>
+        <li class="selector__li"  @click="select">Санкт-Петербург</li>
+        <li class="selector__li"  @click="select">Краснодар</li>
+    </ul>
   </div>
 </template>
 
 <script>
   export default {
-    
+
+  data() {
+    return {
+      title: {
+        cities: 'В какой город РФ нужно доставить товары?',
+      }
+    }
+  },
+
+    computed:{
+      setTitle(){
+       if(this.$route.query.step === 'cities'){
+         return this.title.cities
+       } 
+       return ''
+    },
+    },
+
+    mounted(){
+      console.log(this.$route.query.step)
+    }
   }
 </script>
 
@@ -18,4 +44,14 @@
   font-feature-settings: 'pnum' on, 'lnum' on;
   color: #244156;
 }
+
+.selector__ul{
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.8rem;
+}
+.selector__li {
+  @include selector__li
+}
+
 </style>

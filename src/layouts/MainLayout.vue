@@ -53,6 +53,7 @@ export default {
 
 .main-box{
   padding: 0 8.2rem;
+  width: 100%;
 }
 .side-bar{
   width: 28.5rem;
