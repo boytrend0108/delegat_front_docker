@@ -1,7 +1,7 @@
 export default {
   state:{
     country:'',
-    sity:"",
+    city:"",
   },
   getters: {
     COUNTRY(state){
@@ -19,7 +19,6 @@ export default {
       } else if(data.inputPath === '/cities'){
         state.cities = data.inputValue
       }
-      console.log(data)
     }
   }
 }

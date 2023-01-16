@@ -66,11 +66,11 @@ import { mapMutations } from "vuex"
            console.log(this.path)
       },
       select($event){
+        this.value = $event.target.textContent
         const data = {
           inputValue: this.value,
           inputPath: this.path
-        }
-        this.value = $event.target.textContent
+        } 
         this.SET_INPUT(data)
       },
     }

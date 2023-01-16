@@ -10,7 +10,7 @@
         <my-input class="selector__input" placeholder="Haпример: Китай" />
         <my-button 
           class="input-box__btn"
-          @click="SET_INPUT(inputParam)"
+          @click="goToNext"
         >Найти</my-button>
       </div>
     </div>
@@ -52,7 +52,10 @@ export default {
   },
   data() {
     return {
-      inputParam:'',
+      inputParam:{
+        inputValue: null,
+        inputPath: this.$route.path
+      },
      
     }
   },
@@ -67,7 +70,25 @@ export default {
     ...mapMutations([
       'SET_INPUT'
     ]),
+    
+    goToNext(){
+      if(this.$route.path === '/'){
+      this.inputParam.inputValue = this.COUNTRY
+    } else if(this.$route.path === '/cities'){
+      this.inputParam.inputValue = this.CITY
+    }
+    console.log(this.COUNTRY)
+     this.SET_INPUT(this.inputParam)
+    }
   },
+
+  mounted(){
+    if(this.$route.path === '/'){
+      this.inputParam.inputValue = this.COUNTRY
+    } else if(this.$route.path === '/cities'){
+      this.inputParam.inputValue = this.CITY
+    }
+  }
 }
 </script>
 
