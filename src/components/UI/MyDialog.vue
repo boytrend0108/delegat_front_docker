@@ -1,5 +1,9 @@
-<template>
-  <div class="dialog" v-if="showDialog">
+<template >
+  <div 
+    class="dialog" 
+     v-if="showDialog"
+     @click.self="clearForm"
+    >
     <section class="dialog__content">
       <slot>
        
@@ -9,6 +13,7 @@
 </template>
 
 <script>
+import { mapMutations, } from 'vuex';
 export default {
    name:'my-dialog',
    props:{
@@ -16,7 +21,22 @@ export default {
         type:Boolean,
         default: true
       }
+   },
+
+
+   methods:{
+    ...mapMutations([
+     'CLEAR_FORM'
+   ]),
+
+    clearForm(){
+     document.querySelector("#login-form").reset()
+     this.CLEAR_FORM()
+    
+   },
+   
    }
+  
 }
 </script>
 

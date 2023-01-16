@@ -8,9 +8,10 @@
 <script >
 import FormReg from '@/components/form/FormReg.vue';
 
+
 export default {
   components:{
-    FormReg, 
+    FormReg,
   }
  
 }
