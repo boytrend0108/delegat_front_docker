@@ -50,6 +50,10 @@ export default {
   margin: 0 auto;
   width: 1270px; // 1230 + 20 + 20
 }
+
+.main-box{
+  padding: 0 8.2rem;
+}
 .side-bar{
   width: 28.5rem;
   height: 100vh;

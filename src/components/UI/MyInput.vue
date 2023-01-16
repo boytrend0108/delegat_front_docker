@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import countriesList from "@/api/countries"
+import countriesList from "@/api/inputData"
 import { mapMutations } from "vuex"
   export default {
     name:'my-input',

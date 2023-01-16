@@ -9,8 +9,8 @@
       <div class="input-box">
         <my-input class="selector__input" placeholder="Haпример: Китай" />
         <my-button 
-        class="input-box__btn"
-        @click="SET_COUNTRY(COUNTRY)"
+          class="input-box__btn"
+          @click="SET_COUNTRY(COUNTRY)"
         >Найти</my-button>
       </div>
     </div>
@@ -68,10 +68,6 @@ export default {
       'SET_COUNTRY'
     ]),
   },
-
-  mounted() {
-
-  }
 }
 </script>
 
