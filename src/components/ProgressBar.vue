@@ -1,13 +1,15 @@
 <template>
   <div class="progress">
-    <white-button>Назад</white-button>
+    <white-button class="btn"> <font-awesome-icon icon="fa-solid fa-chevron-left" />   Назад</white-button>
      <div class="progress__bar">
        <h3 class="progress__title">Заполнено на 25%</h3>
        <div class="progress__border">
           <div class="progress__line"></div>
        </div>
      </div>
-    <white-button>Далее</white-button>
+    <white-button class="btn">Далее  
+      <font-awesome-icon icon="fa-solid fa-chevron-right icon" />
+    </white-button>
   </div>
 </template>
 
@@ -41,12 +43,21 @@ import WhiteButton from './UI/WhiteButton.vue'
 .progress__border{
   height: 2px;
   background-color: #ECF0F3;
+  margin-top: 1.3rem;
 }
-
 .progress__line{
   background-color: $main-color;
   width: 25%;
   height: 4px;
+}
+.btn{
+  background-color: #F1F4FA;
+}
+ 
+
+.svg-inline--fa{
+  margin:0 8px;
+  font-size: 14px;
 }
 
 </style>
