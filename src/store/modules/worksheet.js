@@ -13,8 +13,8 @@ export default {
   },
   actions: {},
   mutations: {
-    SET_COUNTRY(state, country){
-      state.country = country
+    SET_INPUT(state, data){
+      state.country = data
     }
   }
 }

@@ -11,7 +11,7 @@
     <ul v-if="showList" class="input__ul">
       <li 
         @click="select"
-        v-for="country in filteredCountry" 
+        v-for="country in filtered" 
         :key="country.id" 
         class="input__li">{{ country }}
       </li>
@@ -29,21 +29,23 @@
 <script>
 import inputData from "@/api/inputData"
 import { mapMutations } from "vuex"
+
   export default {
     name:'my-input',
     data(){
       return{
+        path: this.$route.path,
         value:'',
         showList: false,
         countries: inputData.countries ,
         cities: inputData.cities,
-        filteredCountry:[]    
+        filtered:[]    
       }
     },
     methods:{
 
       ...mapMutations([
-        'SET_COUNTRY'
+        'SET_INPUT'
       ]),
 
       showListFn(){
@@ -53,12 +55,19 @@ import { mapMutations } from "vuex"
       },
 
       filterCountryFn(){
-        this.filteredCountry = this.countries.filter(el => 
+        if(this.$route.path === '/'){
+          this.filtered = this.countries.filter(el => 
            el.toLowerCase().includes(this.value.toLowerCase()))
+        } else if(this.$route.path === '/cities'){
+          this.filtered = this.cities.filter(el => 
+           el.toLowerCase().includes(this.value.toLowerCase()))
+        }
+       
+           console.log(this.path)
       },
       select($event){
         this.value = $event.target.textContent
-        this.SET_COUNTRY(this.value)
+        this.SET_INPUT(this.value)
       },
     }
   }
