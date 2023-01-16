@@ -14,7 +14,12 @@ export default {
   actions: {},
   mutations: {
     SET_INPUT(state, data){
-      state.country = data
+      if(data.inputPath === '/'){
+        state.country = data.inputValue
+      } else if(data.inputPath === '/cities'){
+        state.cities = data.inputValue
+      }
+      console.log(data)
     }
   }
 }

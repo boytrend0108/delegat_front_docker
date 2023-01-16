@@ -10,7 +10,7 @@
         <my-input class="selector__input" placeholder="Haпример: Китай" />
         <my-button 
           class="input-box__btn"
-          @click="SET_COUNTRY(COUNTRY)"
+          @click="SET_INPUT(inputParam)"
         >Найти</my-button>
       </div>
     </div>
@@ -52,20 +52,20 @@ export default {
   },
   data() {
     return {
-      message: 'Hello!!',
-      counter: 0,
+      inputParam:'',
+     
     }
   },
 
   computed:{
     ...mapGetters([
-      'COUNTRY'
+      'COUNTRY', 'CITY'
     ])
   },
 
   methods: {
     ...mapMutations([
-      'SET_COUNTRY'
+      'SET_INPUT'
     ]),
   },
 }
