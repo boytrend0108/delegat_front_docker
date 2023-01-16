@@ -77,7 +77,7 @@ import { mapMutations, mapGetters } from "vuex"
           this.filtered = this.cities.filter(el => 
            el.toLowerCase().includes(this.value.toLowerCase()))
         }
-           console.log(this.path)
+          
       },
 
       select($event){

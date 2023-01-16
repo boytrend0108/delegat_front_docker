@@ -22,10 +22,11 @@ export default {
     },
     
     SET_INPUT(state, data){
+      console.log(data)
       if(data.inputPath === '/'){
         state.country = data.inputValue
-      } else if(data.inputPath === '/cities'){
-        state.cities = data.inputValue
+      } else if(data.inputPath === 'cities'){
+        state.city = data.inputValue
       }
     }
   }

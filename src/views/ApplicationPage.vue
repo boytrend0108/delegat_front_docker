@@ -40,7 +40,7 @@ import { mapMutations } from 'vuex'
         this.SAVE_INPUT_VALUE(value)
         const data = {
           inputValue: value,
-          inputPath: this.path
+          inputPath: this.$route.query.step
         } 
         this.SET_INPUT(data)
       },
@@ -48,7 +48,7 @@ import { mapMutations } from 'vuex'
     },
 
     mounted(){
-      console.log(this.$route.query.step)
+      
     }
   }
 </script>

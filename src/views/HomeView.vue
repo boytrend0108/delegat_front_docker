@@ -77,7 +77,7 @@ export default {
       'SET_INPUT',  'SAVE_INPUT_VALUE'
     ]),
     
-    goToNext(){
+    goToNext(){    
       if (this.$route.path === '/') {
         this.inputParam.inputValue = this.COUNTRY
         this.SET_INPUT(this.inputParam)
@@ -94,7 +94,7 @@ export default {
         this.SAVE_INPUT_VALUE(value)
         const data = {
           inputValue: value,
-          inputPath: this.path
+          inputPath: this.$route.path
         } 
         this.SET_INPUT(data)
       },
