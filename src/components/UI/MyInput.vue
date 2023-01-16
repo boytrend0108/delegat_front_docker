@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import countriesList from "@/api/inputData"
+import inputData from "@/api/inputData"
 import { mapMutations } from "vuex"
   export default {
     name:'my-input',
@@ -35,7 +35,8 @@ import { mapMutations } from "vuex"
       return{
         value:'',
         showList: false,
-        countries: countriesList ,
+        countries: inputData.countries ,
+        cities: inputData.cities,
         filteredCountry:[]    
       }
     },
@@ -59,8 +60,6 @@ import { mapMutations } from "vuex"
         this.value = $event.target.textContent
         this.SET_COUNTRY(this.value)
       },
-
-    
     }
   }
 </script>
