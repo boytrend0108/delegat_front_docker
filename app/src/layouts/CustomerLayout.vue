@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import MyLogo from '@/components/UI/MyLogo.vue'
+import MyLogo from '../components/UI/MyLogo.vue'
 export default {
   components: { MyLogo },
    name:'main-layout'

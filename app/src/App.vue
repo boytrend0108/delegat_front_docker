@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import MainLayout from '@/layouts/MainLayout.vue'
-import StartLayout from '@/layouts/StartLayout.vue'
+import MainLayout from './layouts/MainLayout.vue'
+import StartLayout from './layouts/StartLayout.vue'
    export default {
     components: {
     MainLayout, StartLayout

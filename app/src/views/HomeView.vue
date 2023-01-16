@@ -25,7 +25,7 @@
         <div class="option__icon">
           <slot></slot>
         </div>
-        <img src="@/assets/images/icons/magnifying-glass.svg" alt="icon" class="icon">
+        <img src="../assets/images/icons/magnifying-glass.svg" alt="icon" class="icon">
         <h3 class="option__title"> Поиск фабрики / товара за границей</h3>
         <p class="option__text">
           Подходит тем, кто не сталкивался с ВЭД и не знаете, например, как заплатить на фабрику / поставщику. Наши специалисты проведут вас от заказа товара у поставщика до принятия его на вашем складе
@@ -37,7 +37,7 @@
         <div class="option__icon">
           <slot></slot>
         </div>
-        <img src="@/assets/images/icons/user.svg" alt="icon" class="icon">
+        <img src="../assets/images/icons/user.svg" alt="icon" class="icon">
         <h3 class="option__title">Личный менеджер на поставку</h3>
         <p class="option__text">Подходит тем, кто не сталкивался с ВЭД и не знаете, например, как заплатить на фабрику / поставщику. Наши специалисты проведут вас от заказа товара у поставщика до принятия его на вашем складе</p>
         <white-button class="option_btn">Заказать</white-button>
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import OptionBox from '@/components/OptionBox.vue';
+import OptionBox from '../components/OptionBox.vue';
 import { mapMutations, mapGetters } from 'vuex';
 export default {
   name: 'HomeView',

@@ -1,6 +1,6 @@
 <template>
   <div class="form-offer">
-    <img src="@/assets/images/icons/handshake.svg" alt="handshake">
+    <img src="../../assets/images/icons/handshake.svg" alt="handshake">
     <div class="offer">
       <p to="/register" class="form__question grey"> Хотите сотрудничать с нами ?</p>
       <router-link to="/register" class="form__question"> Зарегистрироваться как партнёр</router-link>

@@ -1,7 +1,7 @@
 import { createStore } from 'vuex'
-import auth from '@/store/modules/auth'
-import form from '@/store/modules/form'
-import worksheet from "@/store/modules/worksheet"
+import auth from './modules/auth'
+import form from './modules/form'
+import worksheet from "./modules/worksheet"
 
 export default createStore({
   state: {

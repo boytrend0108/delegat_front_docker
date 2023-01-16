@@ -1,5 +1,5 @@
-import authApi from '@/api/auth'
-import {setItem} from '@/helpers/persistanceStorage'
+import authApi from '../../api/auth'
+import {setItem} from '../../helpers/persistanceStorage'
 
 export default {
   state:{ 

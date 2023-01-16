@@ -94,8 +94,8 @@
 </template>
 
 <script>
-import FormOffer from '@/components/form/FormOffer.vue';
-import McvValidationErrors from '@/components/ValidationErrors'
+import FormOffer from './FormOffer.vue';
+import McvValidationErrors from '../ValidationErrors.vue'
 import {mapGetters, mapActions} from 'vuex'
 
 export default {

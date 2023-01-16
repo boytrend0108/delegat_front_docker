@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import FormOffer from '@/components/form/FormOffer.vue';
+import FormOffer from './FormOffer.vue';
 import { mapActions, mapGetters, mapMutations } from 'vuex';
 
   export default {

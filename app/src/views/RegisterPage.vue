@@ -6,7 +6,7 @@
 
 
 <script >
-import FormReg from '@/components/form/FormReg.vue';
+import FormReg from '../components/form/FormReg.vue';
 
 
 export default {

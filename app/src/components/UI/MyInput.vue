@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import inputData from "@/api/inputData"
+import inputData from "../../api/inputData"
 import { mapMutations, mapGetters } from "vuex"
 
   export default {
