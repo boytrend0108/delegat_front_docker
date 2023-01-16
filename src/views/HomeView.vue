@@ -65,17 +65,16 @@ export default {
     }
   },
 
+
   computed:{
     ...mapGetters([
-      'COUNTRY', 'CITY'
+      'COUNTRY', 'CITY', 'INPUT'
     ]),
-
-   
   },
 
   methods: {
     ...mapMutations([
-      'SET_INPUT'
+      'SET_INPUT',  'SAVE_INPUT_VALUE'
     ]),
     
     goToNext(){
@@ -88,8 +87,16 @@ export default {
         this.SET_INPUT(this.inputParam)
         this.$router.push('/application?item')
       }
-    
-    }
+    },
+
+    select($event){
+        this.value = $event.target.textContent
+        const data = {
+          inputValue: this.value,
+          inputPath: this.path
+        } 
+        this.SET_INPUT(data)
+      },
   },
 
   mounted(){

@@ -11,8 +11,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
   export default {
-
   data() {
     return {
       title: {
@@ -30,6 +30,22 @@
     },
     },
 
+    methods:{
+      ...mapMutations([
+      'SET_INPUT'
+    ]),
+
+    select($event){
+        this.value = $event.target.textContent
+        const data = {
+          inputValue: this.value,
+          inputPath: this.path
+        } 
+        this.SET_INPUT(data)
+      },
+
+    },
+
     mounted(){
       console.log(this.$route.query.step)
     }
@@ -45,6 +61,9 @@
   color: #244156;
 }
 
+.selector__input{
+  margin-top: 4.5rem;
+}
 .selector__ul{
   display: flex;
   gap: 1rem;

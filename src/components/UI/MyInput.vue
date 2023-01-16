@@ -39,9 +39,8 @@ import { mapMutations } from "vuex"
       }
     },
     methods:{
-
       ...mapMutations([
-        'SET_INPUT'
+        'SET_INPUT', "SAVE_INPUT_VALUE"
       ]),
 
       showListFn(){
@@ -51,10 +50,11 @@ import { mapMutations } from "vuex"
       },
 
       filterCountryFn(){
+        this.SAVE_INPUT_VALUE(this.value)
         if(this.$route.path === '/'){
           this.filtered = this.countries.filter(el => 
            el.toLowerCase().includes(this.value.toLowerCase()))
-        } else if(this.$route.path === '/cities'){
+        } else if(this.$route.query.step === 'cities'){
           this.filtered = this.cities.filter(el => 
            el.toLowerCase().includes(this.value.toLowerCase()))
         }
@@ -99,7 +99,7 @@ import { mapMutations } from "vuex"
     .input__ul {
       transition: 1s;
       max-height: 200px;
-      width: calc(96% + $input-box__btn_width );
+      width: 100%;
       background: #FFFFFF;
       box-shadow: 0px 5px 20px rgba(6, 21, 43, 0.15);
       border-radius: 10px;
