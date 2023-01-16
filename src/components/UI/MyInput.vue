@@ -161,6 +161,7 @@ import { mapMutations, mapGetters } from "vuex"
 ::-webkit-scrollbar-thumb{
   background:#416782;
   border-radius: 5px;
+  height: 5rem;
 }
 
 

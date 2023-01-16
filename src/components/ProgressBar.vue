@@ -1,6 +1,9 @@
 <template>
   <div class="progress">
-    <white-button class="btn"> <font-awesome-icon icon="fa-solid fa-chevron-left" />   Назад</white-button>
+    <white-button 
+    class="btn"
+    @click="this.$router.push('/')"
+    > <font-awesome-icon icon="fa-solid fa-chevron-left" />Назад</white-button>
      <div class="progress__bar">
        <h3 class="progress__title">Заполнено на 25%</h3>
        <div class="progress__border">
