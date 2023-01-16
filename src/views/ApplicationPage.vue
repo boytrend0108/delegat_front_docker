@@ -8,11 +8,17 @@
         <li class="selector__li"  @click="select">Краснодар</li>
     </ul>
   </div>
+  <progress-bar  class="progress" />
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
-  export default {
+import ProgressBar from '@/components/ProgressBar.vue'
+export default {
+  components: {
+    ProgressBar
+  },
+
   data() {
     return {
       title: {
@@ -21,36 +27,36 @@ import { mapMutations } from 'vuex'
     }
   },
 
-    computed:{
-      setTitle(){
-       if(this.$route.query.step === 'cities'){
-         return this.title.cities
-       } 
-       return ''
+  computed: {
+    setTitle() {
+      if (this.$route.query.step === 'cities') {
+        return this.title.cities
+      }
+      return ''
     },
-    },
+  },
 
-    methods:{
-      ...mapMutations([
-      'SET_INPUT','SAVE_INPUT_VALUE'
+  methods: {
+    ...mapMutations([
+      'SET_INPUT', 'SAVE_INPUT_VALUE'
     ]),
 
-    select($event){
-        let value = $event.target.textContent
-        this.SAVE_INPUT_VALUE(value)
-        const data = {
-          inputValue: value,
-          inputPath: this.$route.query.step
-        } 
-        this.SET_INPUT(data)
-      },
-
+    select($event) {
+      let value = $event.target.textContent
+      this.SAVE_INPUT_VALUE(value)
+      const data = {
+        inputValue: value,
+        inputPath: this.$route.query.step
+      }
+      this.SET_INPUT(data)
     },
 
-    mounted(){
-      
-    }
+  },
+
+  mounted() {
+
   }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -72,6 +78,10 @@ import { mapMutations } from 'vuex'
 }
 .selector__li {
   @include selector__li
+}
+
+.progress{
+  margin-top: 12.8rem;
 }
 
 </style>
