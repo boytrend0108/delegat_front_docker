@@ -32,13 +32,14 @@ import { mapMutations } from 'vuex'
 
     methods:{
       ...mapMutations([
-      'SET_INPUT'
+      'SET_INPUT','SAVE_INPUT_VALUE'
     ]),
 
     select($event){
-        this.value = $event.target.textContent
+        let value = $event.target.textContent
+        this.SAVE_INPUT_VALUE(value)
         const data = {
-          inputValue: this.value,
+          inputValue: value,
           inputPath: this.path
         } 
         this.SET_INPUT(data)

@@ -46,7 +46,7 @@ import { mapMutations, mapGetters } from "vuex"
         'INPUT'
       ]),
 
-      setPlaceholder(){
+      setPlaceholder(){ // dinamic placeholder
         let msg = ''; 
         if(this.$route.query.step === "cities"){
           msg = "Например Москва"
