@@ -1,31 +1,18 @@
 <template>
-    <div class="container header-container">
-    <header class="header">
-      <MyLogo />
-      <nav class="nav">
-        <ul class="nav__ul">
-          <li class="nav__li nav__li-after">Специалистам</li>
-         
-          <li class="nav__li">Войти</li>
-        </ul>
-      </nav>
-    </header>
-  </div>
-
+  <HeaderComp />
   <div class="container">
     <main class="main-box">
       <router-view />
     </main>
     <footer class="footer">Footer</footer>
   </div>
-
 </template>
 
 <script>
-import MyLogo from '@/components/UI/MyLogo.vue';
+import HeaderComp from '@/components/HeaderComp.vue';
 
   export default {
-    components: { MyLogo },
+    components: { HeaderComp },
     name:'start-layout'
 }
 </script>
@@ -39,42 +26,5 @@ import MyLogo from '@/components/UI/MyLogo.vue';
    display: flex;
    flex-direction: column;
    width: 1270px; // 1230 + 20 + 20
-  
 }
-
-
-.header{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  
-}
-
-.nav{
-  padding: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
- 
-}
-
-.nav__ul{
-  display: flex;
-  gap:1rem;
-}
-
-.nav__li{
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 21px;
-  font-feature-settings: 'pnum' on, 'lnum' on;
-  color: #416782;
-  cursor: pointer;
-}
-
-.nav__li-after::after{
-   content: url(@/assets/images/icons/shevron.svg);
-   margin:0px 0px 0px 10px;
-}
-
 </style>

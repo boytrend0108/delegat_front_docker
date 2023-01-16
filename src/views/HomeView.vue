@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import OptionBox from '@/components/Option-box.vue';
+import OptionBox from '@/components/OptionBox.vue';
 import { mapMutations, mapGetters } from 'vuex';
 export default {
   name: 'HomeView',
