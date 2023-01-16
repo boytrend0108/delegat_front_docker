@@ -5,7 +5,7 @@
   </header>
   <section class="content">
     <div class="selector">
-      <h2 class="selector__title">Из какой страны вы планируете завозить товары?</h2>
+      <h2 class="selector__title">{{ setTitle }}</h2>
       <div class="input-box">
         <my-input class="selector__input" placeholder="Haпример: Китай" />
         <my-button 
@@ -55,14 +55,27 @@ export default {
       inputParam:{
         inputValue: null,
         inputPath: this.$route.path
-      },    
+      },
+      title:{
+        countries: 'Из какой страны вы планируете завозить товары?',
+        cities: 'В какой город РФ нужно доставить товары?'
+      } 
     }
   },
 
   computed:{
     ...mapGetters([
       'COUNTRY', 'CITY'
-    ])
+    ]),
+
+    setTitle(){
+       if(this.$route.path === '/'){
+         return this.title.countries
+       } else if(this.$route.path === '/application?cities'){
+         return this.title.cities
+       }
+       return ''
+    },
   },
 
   methods: {
