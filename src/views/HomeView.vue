@@ -55,8 +55,7 @@ export default {
       inputParam:{
         inputValue: null,
         inputPath: this.$route.path
-      },
-     
+      },    
     }
   },
 
@@ -72,13 +71,16 @@ export default {
     ]),
     
     goToNext(){
-      if(this.$route.path === '/'){
-      this.inputParam.inputValue = this.COUNTRY
-    } else if(this.$route.path === '/cities'){
-      this.inputParam.inputValue = this.CITY
-    }
-    console.log(this.COUNTRY)
-     this.SET_INPUT(this.inputParam)
+      if (this.$route.path === '/') {
+        this.inputParam.inputValue = this.COUNTRY
+        this.SET_INPUT(this.inputParam)
+        this.$router.push('/application?cities')
+      } else if (this.$route.path === '/cities') {
+        this.inputParam.inputValue = this.CITY
+        this.SET_INPUT(this.inputParam)
+        this.$router.push('/application?item')
+      }
+    
     }
   },
 

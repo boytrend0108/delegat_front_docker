@@ -1,7 +1,7 @@
 <template>
      <div class="container header-container">
       <header class="header">
-        <MyLogo />
+        <MyLogo @click="this.$router.push('/')" />
         <nav class="nav">
           <ul class="nav__ul">
             <li class="nav__li nav__li-after">Специалистам</li>
