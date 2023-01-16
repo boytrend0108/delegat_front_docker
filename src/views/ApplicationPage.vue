@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="title">{{ setTitle }}</h2>
-    <my-input class="selector__input" placeholder="Haпример: Москва" />
+    <my-input class="selector__input" />
     <ul class="selector__ul">
         <li class="selector__li"  @click="select">Москва</li>
         <li class="selector__li"  @click="select">Санкт-Петербург</li>

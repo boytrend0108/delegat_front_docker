@@ -7,7 +7,7 @@
     <div class="selector">
       <h2 class="selector__title">Из какой страны вы планируете завозить товары?</h2>
       <div class="input-box">
-        <my-input class="selector__input" placeholder="Haпример: Китай" />
+        <my-input class="selector__input" />
         <my-button 
           class="input-box__btn"
           @click="goToNext"
@@ -90,9 +90,10 @@ export default {
     },
 
     select($event){
-        this.value = $event.target.textContent
+        let value = $event.target.textContent
+        this.SAVE_INPUT_VALUE(value)
         const data = {
-          inputValue: this.value,
+          inputValue: value,
           inputPath: this.path
         } 
         this.SET_INPUT(data)

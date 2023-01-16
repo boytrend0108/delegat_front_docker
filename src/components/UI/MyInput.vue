@@ -7,7 +7,7 @@
     @focus="showListFn" 
     @blur="showListFn"
     @input="filterCountryFn"
-    placeholder="Например Китай"
+    :placeholder="setPlaceholder"
     >
     <ul v-if="showList" class="input__ul">
       <li 
@@ -36,7 +36,8 @@ import { mapMutations, mapGetters } from "vuex"
         showList: false,
         countries: inputData.countries ,
         cities: inputData.cities,
-        filtered:[]    
+        filtered:[],
+        placeholder:'Например Китай'   
       }
     },
 
@@ -44,7 +45,17 @@ import { mapMutations, mapGetters } from "vuex"
       ...mapGetters([
         'INPUT'
       ]),
-      
+
+      setPlaceholder(){
+        let msg = ''; 
+        if(this.$route.query.step === "cities"){
+          msg = "Например Москва"
+        }else if(this.$route.path === ('/')){
+          msg = 'Например Китай'
+        }
+        return msg
+      }
+
     },
     methods:{
       ...mapMutations([
@@ -66,7 +77,6 @@ import { mapMutations, mapGetters } from "vuex"
           this.filtered = this.cities.filter(el => 
            el.toLowerCase().includes(this.value.toLowerCase()))
         }
-       
            console.log(this.path)
       },
 
