@@ -13,13 +13,12 @@
         >Поддержка</li>
       </ul>
     </aside>
-  </div>
-  
-
-  <div class="container">
     <main class="main-box">
       <router-view />
     </main>
+  </div>
+  
+  <div class="container">
     <footer class="footer">Footer</footer>
   </div>
 
@@ -44,6 +43,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+  display: flex;
+  margin: 0 auto;
+  padding: 0 2rem;
+  margin: 0 auto;
+  width: 1270px; // 1230 + 20 + 20
+}
 .side-bar{
   width: 28.5rem;
   height: 100vh;
