@@ -2,7 +2,7 @@
   <div class="progress">
     <white-button 
     class="btn"
-    @click="this.$router.push('/')"
+    @click="GO_TO_PREV_STEP(this.$route)"
     > <font-awesome-icon icon="fa-solid fa-chevron-left" />Назад</white-button>
      <div class="progress__bar">
        <h3 class="progress__title">{{step}}</h3>
@@ -42,7 +42,7 @@ import { mapActions } from 'vuex';
 
   methods:{
     ...mapActions([
-      'GO_TO_NEXT_STEP'
+      'GO_TO_NEXT_STEP', 'GO_TO_PREV_STEP'
     ])
   }
     
