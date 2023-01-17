@@ -10,7 +10,7 @@
           <div class="progress__line"></div>
        </div>
      </div>
-    <white-button class="btn">Далее  
+    <white-button class="btn" @click="GO_TO_NEXT_STEP(this.$route)" >Далее  
       <font-awesome-icon icon="fa-solid fa-chevron-right icon" />
     </white-button>
   </div>
@@ -18,8 +18,15 @@
 
 <script>
 import WhiteButton from './UI/WhiteButton.vue'
+import { mapActions } from 'vuex';
   export default {
   components: { WhiteButton },
+
+  methods:{
+    ...mapActions([
+      'GO_TO_NEXT_STEP'
+    ])
+  }
     
   }
 </script>
