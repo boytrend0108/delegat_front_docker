@@ -9,7 +9,7 @@
         <li class="selector__li" @click="select">Краснодар</li>
       </ul>
     </section>
-    <description-comp v-if="this.$route.query.step === 'product'" />
+    <description-comp v-if="this.$route.query.step === 'product'" class="description"/>
     <progress-bar class="progress" />
   </div>
 
@@ -96,6 +96,10 @@ export default {
 
 .progress{
   margin-top: 8.6rem;
+}
+
+.description{
+  margin-top: 2rem;
 }
 
 </style>
