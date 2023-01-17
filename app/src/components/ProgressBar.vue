@@ -5,9 +5,9 @@
     @click="GO_TO_PREV_STEP(this.$route)"
     > <font-awesome-icon icon="fa-solid fa-chevron-left" />Назад</white-button>
      <div class="progress__bar">
-       <h3 class="progress__title">{{step}}</h3>
+       <h3 class="progress__title">Заполнено на {{step}}</h3>
        <div class="progress__border">
-          <div class="progress__line"></div>
+          <div class="progress__line" :style=" {'width': step }"></div>
        </div>
      </div>
     <white-button class="btn" @click="GO_TO_NEXT_STEP(this.$route)" >Далее  
@@ -23,21 +23,21 @@ import { mapActions } from 'vuex';
   components: { WhiteButton },
   data(){
     return{
-      // step:'Заполнено на 25%',
+      width:''
     }
   },
 
   computed:{
     step(){
        if(this.$route.query.step === 'cities'){
-        return 'Заполнено на 20%'
+        return '20%'
        } else if(this.$route.query.step === 'naming'){
-        return 'Заполнено на 40%'
+        return '40%'
        } else if(this.$route.query.step === 'product'){
-        return 'Заполнено на 60%'
+        return '60%'
        } 
        return ''
-    }
+    },
   },
 
   methods:{
@@ -77,7 +77,7 @@ import { mapActions } from 'vuex';
 }
 .progress__line{
   background-color: $main-color;
-  width: 25%;
+  // width: 25%;
   height: 4px;
 }
 .btn{
