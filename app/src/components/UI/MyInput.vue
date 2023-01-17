@@ -14,7 +14,7 @@
         @click="select"
         v-for="country in filtered" 
         :key="country.id" 
-        class="input__li">{{ country }}
+        class="input__li"> {{ country }}
       </li>
     </ul>
 
@@ -110,7 +110,7 @@ import { mapMutations, mapGetters } from "vuex"
     height: 6.6rem;
     border: 2px solid #D9E1E7;
     border-radius: 1rem 0 0 1rem;
-    background-color: #fff;
+    background-color: #EEEEF0;
     color: #809FB8;
     display: block;
     font-family: Raleway, system-ui, -apple-system, sans-serif;

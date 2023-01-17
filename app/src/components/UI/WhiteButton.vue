@@ -26,8 +26,8 @@
   font-size: 2rem;
   transition: 0.6s;
   display: flex;
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn:hover{

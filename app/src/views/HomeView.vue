@@ -1,5 +1,5 @@
 <template>
-
+<div>
   <header class="header">
     <h1 class="title">Delegat — бесплатный помощник в мире ВЭД</h1>
   </header>
@@ -10,7 +10,7 @@
         <my-input class="selector__input" />
         <my-button 
           class="input-box__btn"
-          @click="goToNext"
+          @click="GO_TO_NEXT_STEP(this.$route)"
         >Найти</my-button>
       </div>
       <ul class="selector__ul">
@@ -43,13 +43,14 @@
         <white-button class="option_btn">Заказать</white-button>
       </option-box>
     </div>
-
   </section>
+</div>
+ 
 </template>
 
 <script>
 import OptionBox from '../components/OptionBox.vue';
-import { mapMutations, mapGetters } from 'vuex';
+import { mapMutations, mapGetters, mapActions } from 'vuex';
 export default {
   name: 'HomeView',
   components: {
@@ -61,7 +62,6 @@ export default {
         inputValue: null,
         inputPath: this.$route.path
       },
-     
     }
   },
 
@@ -76,18 +76,21 @@ export default {
     ...mapMutations([
       'SET_INPUT',  'SAVE_INPUT_VALUE'
     ]),
+    ...mapActions([
+      "GO_TO_NEXT_STEP"
+    ]),
     
-    goToNext(){    
-      if (this.$route.path === '/') {
-        this.inputParam.inputValue = this.COUNTRY
-        this.SET_INPUT(this.inputParam)
-        this.$router.push('/application?step=cities')
-      } else if (this.$route.path === '/cities') {
-        this.inputParam.inputValue = this.CITY
-        this.SET_INPUT(this.inputParam)
-        this.$router.push('/application?item')
-      }
-    },
+    // goToNext(){    
+    //   if (this.$route.path === '/') {
+    //     this.inputParam.inputValue = this.COUNTRY
+    //     this.SET_INPUT(this.inputParam)
+    //     this.$router.push('/application?step=cities')
+    //   } else if (this.$route.path === '/cities') {
+    //     this.inputParam.inputValue = this.CITY
+    //     this.SET_INPUT(this.inputParam)
+    //     this.$router.push('/application?item')
+    //   }
+    // },
 
     select($event){
         let value = $event.target.textContent

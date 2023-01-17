@@ -2,15 +2,15 @@
   <div class="progress">
     <white-button 
     class="btn"
-    @click="this.$router.push('/')"
+    @click="GO_TO_PREV_STEP(this.$route)"
     > <font-awesome-icon icon="fa-solid fa-chevron-left" />Назад</white-button>
      <div class="progress__bar">
-       <h3 class="progress__title">Заполнено на 25%</h3>
+       <h3 class="progress__title">Заполнено на {{step}}</h3>
        <div class="progress__border">
-          <div class="progress__line"></div>
+          <div class="progress__line" :style=" {'width': step }"></div>
        </div>
      </div>
-    <white-button class="btn">Далее  
+    <white-button class="btn" @click="GO_TO_NEXT_STEP(this.$route)" >Далее  
       <font-awesome-icon icon="fa-solid fa-chevron-right icon" />
     </white-button>
   </div>
@@ -18,8 +18,33 @@
 
 <script>
 import WhiteButton from './UI/WhiteButton.vue'
+import { mapActions } from 'vuex';
   export default {
   components: { WhiteButton },
+  data(){
+    return{
+      width:''
+    }
+  },
+
+  computed:{
+    step(){
+       if(this.$route.query.step === 'cities'){
+        return '20%'
+       } else if(this.$route.query.step === 'naming'){
+        return '40%'
+       } else if(this.$route.query.step === 'product'){
+        return '60%'
+       } 
+       return ''
+    },
+  },
+
+  methods:{
+    ...mapActions([
+      'GO_TO_NEXT_STEP', 'GO_TO_PREV_STEP'
+    ])
+  }
     
   }
 </script>
@@ -30,6 +55,8 @@ import WhiteButton from './UI/WhiteButton.vue'
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-top: 2px solid #D9E1E7;
+  padding-top: 4.2rem;
 }
 .progress__title {
   font-weight: 600;
@@ -50,11 +77,12 @@ import WhiteButton from './UI/WhiteButton.vue'
 }
 .progress__line{
   background-color: $main-color;
-  width: 25%;
+  // width: 25%;
   height: 4px;
 }
 .btn{
-  background-color: #F1F4FA;
+  background-color: $bg-color;
+  color:#416782;
 }
  
 

@@ -1,25 +1,21 @@
 <template>
-  <header-comp />
-  <div class="container">
-    <aside class="side-bar">
-      <ul class="side-bar__ul">
-        <li 
-          class="side-bar__li active"
-          @click="activeBtn"
-          >Поставка</li>
-        <li 
-          class="side-bar__li"
-          @click="activeBtn"
-        >Поддержка</li>
-      </ul>
-    </aside>
-    <main class="main-box">
-      <router-view />
-    </main>
-  </div>
-  
-  <div class="container">
-    <footer class="footer">Footer</footer>
+  <div>
+    <header-comp />
+    <div class="container">
+      <aside class="side-bar">
+        <ul class="side-bar__ul">
+          <li class="side-bar__li active" @click="activeBtn">Поставка</li>
+          <li class="side-bar__li" @click="activeBtn">Поддержка</li>
+        </ul>
+      </aside>
+      <main class="main-box">
+        <router-view />
+      </main>
+    </div>
+
+    <div class="container">
+      <footer class="footer">Footer</footer>
+    </div>
   </div>
 
 </template>
@@ -78,8 +74,7 @@ export default {
       border-radius: 1rem;
     }
   .active{
-    background-color: #F1F4FA;
-    color: #339DFF;
+    background-color: #EEEEF0;
   }
 }
 </style>

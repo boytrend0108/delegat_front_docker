@@ -1,29 +1,38 @@
 <template>
   <div>
-    <h2 class="title">{{ setTitle }}</h2>
-    <my-input class="selector__input" />
-    <ul class="selector__ul">
-        <li class="selector__li"  @click="select">Москва</li>
-        <li class="selector__li"  @click="select">Санкт-Петербург</li>
-        <li class="selector__li"  @click="select">Краснодар</li>
-    </ul>
+    <h2 class="title"> {{ setTitle }} </h2>
+    <section v-if="this.$route.query.step === 'cities' || this.$route.query.step === 'naming' ">
+      <my-input class="selector__input" />
+      <ul class="selector__ul" v-if="this.$route.query.step === 'cities'">
+        <li class="selector__li" @click="select">Москва</li>
+        <li class="selector__li" @click="select">Санкт-Петербург</li>
+        <li class="selector__li" @click="select">Краснодар</li>
+      </ul>
+    </section>
+    <description-comp v-if="this.$route.query.step === 'product'" class="description"/>
+    <progress-bar class="progress" />
   </div>
-  <progress-bar  class="progress" />
+
+ 
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
 import ProgressBar from '../components/ProgressBar.vue'
+import DescriptionComp from '@/components/DescriptionComp.vue'
 export default {
   components: {
-    ProgressBar
+    ProgressBar, DescriptionComp
   },
 
   data() {
     return {
       title: {
         cities: 'В какой город РФ нужно доставить товары?',
-      }
+        naming: 'Придумайте название заявки',
+        product: 'Кратко опишите товары, которые планируете завозить',
+      },
+    
     }
   },
 
@@ -31,6 +40,10 @@ export default {
     setTitle() {
       if (this.$route.query.step === 'cities') {
         return this.title.cities
+      } else if(this.$route.query.step === 'naming'){
+        return this.title.naming
+      }  else if(this.$route.query.step === 'product'){
+        return this.title.product
       }
       return ''
     },
@@ -54,7 +67,8 @@ export default {
   },
 
   mounted() {
-
+     console.log(this.$route)
+     console.log(this.$route)
   }
 }
 </script>
@@ -81,7 +95,11 @@ export default {
 }
 
 .progress{
-  margin-top: 12.8rem;
+  margin-top: 8.6rem;
+}
+
+.description{
+  margin-top: 2rem;
 }
 
 </style>
