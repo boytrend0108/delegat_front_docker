@@ -14,7 +14,7 @@
         @click="select"
         v-for="country in filtered" 
         :key="country.id" 
-        class="input__li">{{ country }}
+        class="input__li"> {{ country }}
       </li>
     </ul>
 

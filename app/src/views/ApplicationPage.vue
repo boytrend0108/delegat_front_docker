@@ -2,7 +2,7 @@
   <div>
     <h2 class="title"> {{ setTitle }} </h2>
     <my-input class="selector__input" />
-    <ul class="selector__ul">
+    <ul class="selector__ul" v-if="this.$route.query.step === 'cities'">
         <li class="selector__li"  @click="select">Москва</li>
         <li class="selector__li"  @click="select">Санкт-Петербург</li>
         <li class="selector__li"  @click="select">Краснодар</li>
@@ -23,7 +23,9 @@ export default {
     return {
       title: {
         cities: 'В какой город РФ нужно доставить товары?',
-      }
+        naming: 'Придумайте название заявки'
+      },
+    
     }
   },
 
@@ -31,6 +33,8 @@ export default {
     setTitle() {
       if (this.$route.query.step === 'cities') {
         return this.title.cities
+      } else if(this.$route.query.step === 'naming'){
+        return this.title.naming
       }
       return ''
     },
@@ -54,7 +58,7 @@ export default {
   },
 
   mounted() {
-
+     console.log(this.$route)
   }
 }
 </script>
