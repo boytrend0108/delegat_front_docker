@@ -18,15 +18,22 @@ export default {
     }
   },
   actions: {
-    GO_TO_NEXT_STEP({state},route){ 
+    GO_TO_NEXT_STEP({state,commit},route){ 
       console.log(route.query.step)
       if (route.path === '/') {
         console.log(router)
+        commit('SET_INPUT', route)
         router.push('/application?step=cities')
       } 
       else if (route.query.step === 'cities') {
+        commit('SET_INPUT', route)
         state.input = ''
         router.push('/application?step=naming')
+      }
+      else if (route.query.step === 'naming') {
+        commit('SET_INPUT', route)
+        state.input = ''
+        router.push('/application?step=product')
       }
     },
   },
@@ -35,15 +42,6 @@ export default {
       state.input = value;
     },
     
-    SET_INPUT(state, data){
-      console.log(data)
-      if(data.inputPath === '/'){
-        state.country = data.inputValue
-      } else if(data.inputPath === 'cities'){
-        state.city = data.inputValue
-      }
-    }
-
     // SET_INPUT(state, data){
     //   console.log(data)
     //   if(data.inputPath === '/'){
@@ -52,5 +50,13 @@ export default {
     //     state.city = data.inputValue
     //   }
     // }
+    SET_INPUT(state, route){
+      if(route.path === '/'){
+        state.country = state.input
+      } else if(route.query.step === 'cities'){
+        state.city = state.input
+      }
+    }
+
   }
 }
