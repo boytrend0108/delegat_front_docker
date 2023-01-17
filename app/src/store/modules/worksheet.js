@@ -55,6 +55,8 @@ export default {
         state.country = state.input
       } else if(route.query.step === 'cities'){
         state.city = state.input
+      }  else if(route.query.step === 'naming'){
+        state.application_name = state.input
       }
     }
 
