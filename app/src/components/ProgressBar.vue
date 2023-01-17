@@ -5,7 +5,7 @@
     @click="this.$router.push('/')"
     > <font-awesome-icon icon="fa-solid fa-chevron-left" />Назад</white-button>
      <div class="progress__bar">
-       <h3 class="progress__title">Заполнено на 25%</h3>
+       <h3 class="progress__title">{{step}}</h3>
        <div class="progress__border">
           <div class="progress__line"></div>
        </div>
@@ -21,6 +21,24 @@ import WhiteButton from './UI/WhiteButton.vue'
 import { mapActions } from 'vuex';
   export default {
   components: { WhiteButton },
+  data(){
+    return{
+      // step:'Заполнено на 25%',
+    }
+  },
+
+  computed:{
+    step(){
+       if(this.$route.query.step === 'cities'){
+        return 'Заполнено на 20%'
+       } else if(this.$route.query.step === 'naming'){
+        return 'Заполнено на 40%'
+       } else if(this.$route.query.step === 'product'){
+        return 'Заполнено на 60%'
+       } 
+       return ''
+    }
+  },
 
   methods:{
     ...mapActions([
@@ -37,6 +55,8 @@ import { mapActions } from 'vuex';
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-top: 2px solid #D9E1E7;
+  padding-top: 4.2rem;
 }
 .progress__title {
   font-weight: 600;
@@ -61,7 +81,8 @@ import { mapActions } from 'vuex';
   height: 4px;
 }
 .btn{
-  background-color: #F1F4FA;
+  background-color: $bg-color;
+  color:#416782;
 }
  
 
